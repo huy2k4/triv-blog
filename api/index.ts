@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import * as fs from 'fs';
-import * as hbs from 'hbs';
+import hbs = require('hbs');
 import { AppModule } from '../src/app.module';
 
 let cachedServer: any;
