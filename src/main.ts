@@ -3,6 +3,8 @@ import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import { AppModule } from './app.module';
+import * as fs from 'fs';
+import hbs = require('hbs');
 
 let cachedServer: any;
 
@@ -17,8 +19,6 @@ async function bootstrapServer() {
     app.setViewEngine('hbs');
     app.set('view options', { layout: 'layouts/main' });
 
-    const hbs = require('hbs');
-    const fs = require('fs');
     const partialsDir = join(viewsPath, 'partials');
     if (fs.existsSync(partialsDir)) {
       const filenames = fs.readdirSync(partialsDir);
