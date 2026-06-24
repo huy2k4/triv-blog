@@ -1,0 +1,48 @@
+{{!-- ═══════════════════════════════════════
+     View: tam-su.hbs
+     Props:
+       successMessage  boolean
+       publicReplies   Array<{ slug, date, displayDate, title, excerpt, tagClass, tagName }>
+═══════════════════════════════════════ --}}
+
+{{!-- ── Page header ───────────────────────────────────────── --}}
+<header class="page-header page-header--centered">
+  <div class="page-header-inner">
+
+    <div class="page-label-row">
+      <span class="page-label-line" aria-hidden="true"></span>
+      <span class="page-label tag-tamsu" data-i18n="page.tamsu.label">Tâm sự</span>
+      <span class="page-label-line" aria-hidden="true"></span>
+    </div>
+
+    <h1 class="page-title" data-i18n="page.tamsu.title">Tâm sự với tôi</h1>
+
+    <p class="page-description" data-i18n="page.tamsu.desc">
+      Đây là nơi bạn có thể nói bất cứ điều gì với Triv — ẩn danh hoặc
+      công khai. Một nỗi lo, một câu hỏi, một điều bạn chưa dám nói với ai.
+      Triv sẽ đọc tất cả, và đôi khi sẽ hồi đáp bằng một bài viết.
+    </p>
+
+  </div>
+</header>
+
+{{!-- ── Confide form ─────────────────────────────────────────── --}}
+{{> confide-form}}
+
+{{!-- ── Public replies (optional) ─────────────────────────────── --}}
+{{#if publicReplies.length}}
+<section class="articles-section container" aria-labelledby="replies-title">
+  <div class="section-header">
+    <h2 class="section-title" id="replies-title" data-i18n="page.tamsu.replies">Những hồi đáp công khai</h2>
+    <span class="section-count" aria-label="{{publicReplies.length}} bài">
+      {{publicReplies.length}}
+    </span>
+  </div>
+
+  <div class="article-list" role="list">
+    {{#each publicReplies}}
+      {{> article-item}}
+    {{/each}}
+  </div>
+</section>
+{{/if}}

@@ -1,0 +1,86 @@
+{{!-- ═══════════════════════════════════════
+     Partial: confide-form.hbs
+     Props: successMessage (boolean)
+═══════════════════════════════════════ --}}
+<section class="confide-section container" id="confide-section">
+  <div class="confide-inner reveal visible">
+    <div class="confide-header">
+      <div class="confide-label" data-i18n="confide.label">Tâm sự với tôi</div>
+      <h2 class="confide-title" data-i18n="confide.title">Bạn muốn nói điều gì?</h2>
+      <p class="confide-text" data-i18n="confide.desc">
+        Gửi cho tôi một lá thư — ẩn danh hay công khai tùy bạn. Tôi sẽ hồi đáp bằng một bài viết, hoặc phản hồi qua email nếu bạn để lại địa chỉ.
+      </p>
+    </div>
+
+    {{#if successMessage}}
+    {{!-- ── Success state ──────────────────────── --}}
+    <div class="confide-success visible" id="confide-success" style="display: flex;">
+      <div class="confide-success-icon">✦</div>
+      <h3 class="confide-success-title">Đã nhận được tâm sự của bạn</h3>
+      <p class="confide-success-text">Cảm ơn bạn đã tin tưởng chia sẻ. Tôi sẽ đọc và suy nghĩ thật kỹ.</p>
+      <br/>
+      <a href="/tam-su" style="color: var(--color-gold); text-decoration: none;">← Gửi thêm tâm sự khác</a>
+    </div>
+    {{else}}
+    {{!-- ── Form ──────────────────────────────── --}}
+    <form class="confide-form" id="confide-form" method="POST" action="/tam-su/gui">
+      
+      {{!-- Anonymous / Public Toggle --}}
+      <div class="confide-toggle" role="group" aria-label="Chọn hình thức gửi">
+        <button type="button" class="confide-toggle-btn active" id="toggle-anonymous" data-mode="anonymous" onclick="setConfideMode('anonymous')" data-i18n="confide.toggle.anon">Ẩn danh</button>
+        <button type="button" class="confide-toggle-btn" id="toggle-public" data-mode="public" onclick="setConfideMode('public')" data-i18n="confide.toggle.public">Công khai</button>
+      </div>
+
+      <input type="hidden" name="visibility" id="visibility-input" value="anonymous" />
+
+      {{!-- Name field (only visible when public) --}}
+      <div class="confide-name-field confide-field" id="name-field">
+        <label class="confide-field-label" for="confide-name" data-i18n="confide.name.label">Tên của bạn</label>
+        <input type="text" name="name" class="confide-input" id="confide-name" placeholder="Tên hiển thị (hoặc nickname)" data-i18n="confide.name.placeholder">
+      </div>
+
+      {{!-- Email (optional) --}}
+      <div class="confide-field">
+        <label class="confide-field-label" for="confide-email"><span data-i18n="confide.email.label">Email</span> <span style="opacity: 0.5;" data-i18n="confide.email.note">(không bắt buộc — chỉ nếu bạn muốn nhận phản hồi)</span></label>
+        <input type="email" name="email" class="confide-input" id="confide-email" placeholder="email@example.com">
+      </div>
+
+      {{!-- Message --}}
+      <div class="confide-field">
+        <label class="confide-field-label" for="confide-message" data-i18n="confide.message.label">Lời tâm sự</label>
+        <textarea name="message" class="confide-textarea" id="confide-message" placeholder="Viết bất cứ điều gì bạn muốn chia sẻ..." data-i18n="confide.message.placeholder" required></textarea>
+      </div>
+
+      <button type="submit" class="confide-submit" id="confide-submit" data-i18n="confide.submit">Gửi tâm sự</button>
+
+      <p class="confide-note" data-i18n="confide.note">
+        ✦ Mọi tâm sự ẩn danh sẽ được bảo mật tuyệt đối. Tôi có thể chọn hồi đáp công khai dưới dạng bài viết (không tiết lộ danh tính), hoặc phản hồi riêng qua email nếu bạn cung cấp.
+      </p>
+    </form>
+    {{/if}}
+
+  </div>
+</section>
+
+<script>
+  function setConfideMode(mode) {
+    const toggleAnonymous = document.getElementById('toggle-anonymous');
+    const togglePublic = document.getElementById('toggle-public');
+    const nameField = document.getElementById('name-field');
+    const hiddenInput = document.getElementById('visibility-input');
+
+    if (!toggleAnonymous || !togglePublic || !nameField || !hiddenInput) return;
+
+    if (mode === 'anonymous') {
+      toggleAnonymous.classList.add('active');
+      togglePublic.classList.remove('active');
+      nameField.classList.remove('visible');
+      hiddenInput.value = 'anonymous';
+    } else {
+      togglePublic.classList.add('active');
+      toggleAnonymous.classList.remove('active');
+      nameField.classList.add('visible');
+      hiddenInput.value = 'public';
+    }
+  }
+</script>

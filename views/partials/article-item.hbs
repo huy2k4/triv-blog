@@ -1,0 +1,49 @@
+{{!-- ═══════════════════════════════════════
+     Partial: article-item.hbs
+     Props: slug, date, displayDate, title, excerpt, tagClass, tagName
+═══════════════════════════════════════ --}}
+<a href="/bai-viet/{{slug}}" class="article-item reveal">
+  {{#if coverImage}}
+  <div class="article-thumb">
+    <img src="{{coverImage}}" alt="{{title}}" loading="lazy" />
+  </div>
+  {{/if}}
+  <div class="article-body">
+    <time class="article-date" datetime="{{date}}">{{displayDate}}</time>
+    <div class="article-content">
+      <h3 class="article-title" data-i18n="post.{{slug}}.title">{{title}}</h3>
+      <p class="article-subtitle" data-i18n="post.{{slug}}.excerpt">{{excerpt}}</p>
+    </div>
+  </div>
+  <span class="article-tag {{tagClass}}" data-i18n="cat.{{category}}">{{tagName}}</span>
+</a>
+
+{{!-- Scroll reveal — runs once per partial instance; the observer is idempotent --}}
+<script>
+  (function () {
+    if (typeof window.__trivRevealObserver === 'undefined') {
+      const observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+      );
+      window.__trivRevealObserver = observer;
+
+      // Observe all current .reveal elements
+      document.querySelectorAll('.reveal:not(.visible)').forEach(function (el) {
+        observer.observe(el);
+      });
+    } else {
+      // Observer already created — observe any newly added elements
+      document.querySelectorAll('.reveal:not(.visible)').forEach(function (el) {
+        window.__trivRevealObserver.observe(el);
+      });
+    }
+  })();
+</script>

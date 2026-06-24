@@ -1,0 +1,103 @@
+{{!-- ═══════════════════════════════════════
+     View: post.hbs
+     Props:
+       title           string
+       categoryName    string
+       categoryTagClass string
+       subtitle        string
+       author          string
+       displayDate     string
+       readingTime     string|number
+       content         string (raw HTML from parsed Markdown)
+       tags            string[]
+       slug            string
+═══════════════════════════════════════ --}}
+
+{{!-- ── Reading progress bar ─────────────────────────────────── --}}
+<div
+  class="reading-progress"
+  id="reading-progress"
+  role="progressbar"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow="0"
+  aria-label="Tiến trình đọc bài"
+></div>
+
+{{!-- ── Article ───────────────────────────────────────────────── --}}
+<article>
+
+  {{!-- Article header --}}
+  <header class="article-page-header container">
+
+    <div class="article-page-category animate-fade-in delay-1 {{categoryTagClass}}" data-i18n="cat.{{category}}">{{categoryName}}</div>
+
+    <h1 class="article-page-title animate-fade-in-up delay-2" itemprop="headline" data-i18n="post.{{slug}}.title">{{title}}</h1>
+
+    {{#if subtitle}}
+    <p class="article-page-subtitle animate-fade-in-up delay-3"><em>{{subtitle}}</em></p>
+    {{/if}}
+
+    <div class="article-page-meta animate-fade-in delay-4" itemprop="author" itemscope itemtype="https://schema.org/Person">
+      <span itemprop="name">{{author}}</span>
+      <span class="divider" aria-hidden="true"></span>
+      <time itemprop="datePublished" datetime="{{date}}">{{displayDate}}</time>
+      {{#if readingTime}}
+      <span class="divider" aria-hidden="true"></span>
+      <span>{{readingTime}} <span data-i18n="article.reading">phút đọc</span></span>
+      {{/if}}
+    </div>
+
+  </header>
+
+  {{!-- Article body --}}
+  <div class="article-body" id="article-body" itemprop="articleBody" data-i18n-html="post.{{slug}}.content">
+    {{{content}}}
+  </div>
+
+  {{!-- Article end --}}
+  <div class="article-end">
+
+    <div class="article-end-ornament" aria-hidden="true">◆ ◆ ◆</div>
+
+    {{#if tags.length}}
+    <div class="article-end-tags" aria-label="Thẻ bài viết">
+      {{#each tags}}
+      <span class="article-end-tag">{{this}}</span>
+      {{/each}}
+    </div>
+    {{/if}}
+
+    <a href="/" class="back-link" id="back-home-link" data-i18n="article.back">
+      ← Quay lại trang chủ
+    </a>
+
+  </div>
+
+</article>
+
+{{!-- ── Reading progress bar JS ────────────────────────────────── --}}
+<script>
+  (function () {
+    var bar    = document.getElementById('reading-progress');
+    var body   = document.getElementById('article-body');
+    if (!bar || !body) return;
+
+    function updateProgress() {
+      var bodyRect  = body.getBoundingClientRect();
+      var bodyTop   = bodyRect.top + window.scrollY;
+      var bodyEnd   = bodyTop + body.offsetHeight;
+      var scrolled  = window.scrollY + window.innerHeight;
+      var progress  = Math.min(
+        100,
+        Math.max(0, ((window.scrollY - bodyTop) / (bodyEnd - bodyTop - window.innerHeight)) * 100)
+      );
+
+      bar.style.width = progress + '%';
+      bar.setAttribute('aria-valuenow', Math.round(progress));
+    }
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  })();
+</script>

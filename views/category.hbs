@@ -1,0 +1,58 @@
+{{!-- ═══════════════════════════════════════
+     View: category.hbs
+     Props:
+       categoryName        string
+       categoryTagClass    string  (e.g. 'tag-mydays')
+       categoryDescription string
+       posts               Array<{ slug, date, displayDate, title, excerpt, tagClass, tagName }>
+═══════════════════════════════════════ --}}
+
+{{!-- ── Page header ───────────────────────────────────────── --}}
+<header class="page-header">
+  <div class="page-header-inner">
+
+    <div class="page-label-row">
+      <span class="page-label-line" aria-hidden="true"></span>
+      <span class="page-label {{categoryTagClass}}" {{#if isMyDays}}data-i18n="cat.my-days"{{/if}} {{#if isGocNhin}}data-i18n="cat.goc-nhin"{{/if}} {{#if isKienThuc}}data-i18n="cat.kien-thuc"{{/if}}>{{categoryName}}</span>
+      <span class="page-label-line" aria-hidden="true"></span>
+    </div>
+
+    <h1 class="page-title" {{#if isMyDays}}data-i18n="cat.my-days"{{/if}} {{#if isGocNhin}}data-i18n="cat.goc-nhin"{{/if}} {{#if isKienThuc}}data-i18n="cat.kien-thuc"{{/if}}>{{categoryName}}</h1>
+
+    {{#if categoryDescription}}
+    <p class="page-description" {{#if isMyDays}}data-i18n="category.my-days.desc"{{/if}} {{#if isGocNhin}}data-i18n="category.goc-nhin.desc"{{/if}} {{#if isKienThuc}}data-i18n="category.kien-thuc.desc"{{/if}}>{{categoryDescription}}</p>
+    {{/if}}
+
+  </div>
+</header>
+
+{{!-- ── Article list ────────────────────────────────────────── --}}
+<section class="articles-section container" id="articles-section" aria-labelledby="category-articles-title">
+  <div class="section-header">
+    <h2 class="section-title" id="category-articles-title" data-i18n="category.all">Tất cả bài viết</h2>
+    {{#if posts.length}}
+    <span class="section-count" aria-label="{{posts.length}} bài viết">{{posts.length}}</span>
+    {{/if}}
+  </div>
+
+  {{#if posts.length}}
+  <div class="article-list" id="article-list" role="list">
+    {{#each posts}}
+      {{> article-item}}
+    {{/each}}
+  </div>
+
+    {{else}}
+    {{!-- ── Empty state ──────────────────────────── --}}
+    <div class="empty-state" role="status">
+      <span class="empty-ornament" aria-hidden="true">✦</span>
+      <p class="empty-title" data-i18n="empty.title">Chưa có bài viết nào...</p>
+      <p class="empty-description" data-i18n="empty.desc">
+        Triv vẫn đang viết. Quay lại sau nhé.
+      </p>
+      <a href="/" class="empty-back-link" data-i18n="empty.back">← Về trang chủ</a>
+    </div>
+    {{/if}}
+
+  </div>
+</section>

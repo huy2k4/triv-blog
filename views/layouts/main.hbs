@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{{title}}}</title>
+  <meta name="description" content="{{{description}}}" />
+  <meta name="author" content="Võ Quốc Huy — Trivelet Aisling" />
+  <meta property="og:title" content="{{{title}}}" />
+  <meta property="og:description" content="{{{description}}}" />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,600;1,700;1,900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="/style.css?v=2" />
+
+  <!-- Grain texture overlay -->
+  <style>
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.028;
+      pointer-events: none;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       HEADER
+  ═══════════════════════════════════════ -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+
+      <!-- Logo -->
+      <a href="/" class="logo" id="logo" aria-label="Trang chủ Triv">
+        <span class="logo-main">Triv<span class="logo-dot">.</span></span>
+        <span class="logo-sub">Trivelet Aisling</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="main-nav" id="main-nav" aria-label="Điều hướng chính">
+        <a href="/" class="nav-link {{#if isHome}}active{{/if}}" data-i18n="nav.home">Trang chủ</a>
+        <a href="/my-days" class="nav-link {{#if isMyDays}}active{{/if}}" data-i18n="nav.mydays">My Days</a>
+        <a href="/goc-nhin" class="nav-link {{#if isGocNhin}}active{{/if}}" data-i18n="nav.gocnhin">Góc nhìn</a>
+        <a href="/kien-thuc" class="nav-link {{#if isKienThuc}}active{{/if}}" data-i18n="nav.kienthuc">Kiến thức</a>
+        <a href="/tam-su" class="nav-link {{#if isTamSu}}active{{/if}}" data-i18n="nav.tamsu">Tâm sự với tôi</a>
+      </nav>
+
+      <!-- Hamburger -->
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-label="Mở menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════ -->
+  <main class="site-main" id="main-content">
+    {{{body}}}
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       SUBSCRIBE SECTION
+  ═══════════════════════════════════════ -->
+  <section class="subscribe-section container" id="subscribe-section">
+    <div class="subscribe-inner reveal">
+      <h2 class="subscribe-title" data-i18n="subscribe.title">Theo dõi Triv</h2>
+      <p class="subscribe-text" data-i18n="subscribe.desc">
+        Nhận thông báo khi có bài viết mới — những suy nghĩ, ký ức và quan sát
+        về cuộc sống từ góc nhìn của Triv.
+      </p>
+      <form class="subscribe-form" id="subscribe-form" onsubmit="handleSubscribe(event)" novalidate>
+        <input
+          type="email"
+          id="subscribe-email"
+          class="subscribe-input"
+          placeholder="Địa chỉ email của bạn"
+          data-i18n="subscribe.placeholder"
+          autocomplete="email"
+          required
+        />
+        <button type="submit" class="subscribe-btn" id="subscribe-btn" data-i18n="subscribe.btn">Đăng ký</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer class="site-footer" id="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text" data-i18n="footer.copyright">
+        &copy; 2026 Võ Quốc Huy &mdash; Trivelet Aisling
+      </p>
+      <div class="footer-links" aria-label="Liên kết mạng xã hội">
+        <a href="https://twitter.com/" class="footer-link" target="_blank" rel="noopener noreferrer">Twitter</a>
+        <a href="mailto:triv@example.com" class="footer-link">Email</a>
+        <a href="/rss.xml" class="footer-link">RSS</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════
+       LANGUAGE SELECTOR
+  ═══════════════════════════════════════ -->
+  <div class="lang-selector" id="lang-selector">
+    <div class="lang-panel" id="lang-panel">
+      <button class="lang-option" data-lang="en">English</button>
+      <button class="lang-option" data-lang="vi">Tiếng Việt</button>
+      <button class="lang-option active" data-lang="ja">日本語</button>
+    </div>
+    <button class="lang-toggle" id="lang-toggle" aria-label="Chọn ngôn ngữ">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════ -->
+  <script src="/i18n.js?v=2"></script>
+  <script>
+    // ── Header scroll effect ──────────────────────────────────
+    (function () {
+      const header = document.getElementById('site-header');
+      let lastY = 0;
+
+      function onScroll() {
+        const y = window.scrollY;
+        if (y > 60) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+        // Hide on scroll down, reveal on scroll up
+        if (y > lastY && y > 120) {
+          header.classList.add('hidden');
+        } else {
+          header.classList.remove('hidden');
+        }
+        lastY = y;
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+
+    // ── Hamburger / mobile menu ───────────────────────────────
+    (function () {
+      const btn  = document.getElementById('menu-toggle');
+      const nav  = document.getElementById('main-nav');
+      if (!btn || !nav) return;
+
+      btn.addEventListener('click', function () {
+        const isOpen = nav.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      // Close when a link is tapped
+      nav.querySelectorAll('.nav-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          nav.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+
+    // ── Subscribe form (UI only) ──────────────────────────────
+    function handleSubscribe(e) {
+      e.preventDefault();
+      const btn = document.getElementById('subscribe-btn');
+      const originalText = btn.textContent;
+      btn.textContent = 'Cảm ơn bạn ✦';
+      btn.style.background = 'transparent';
+      btn.style.color = 'var(--color-gold)';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.style.color = '';
+        e.target.reset();
+      }, 2500);
+    }
+
+    // ── Language Selector ──────────────────────────────────
+    (function () {
+      const toggleBtn = document.getElementById('lang-toggle');
+      const panel = document.getElementById('lang-panel');
+      const options = document.querySelectorAll('.lang-option');
+
+      if (!toggleBtn || !panel) return;
+
+      toggleBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        panel.classList.toggle('open');
+      });
+
+      options.forEach(opt => {
+        opt.addEventListener('click', function() {
+          options.forEach(o => o.classList.remove('active'));
+          this.classList.add('active');
+          panel.classList.remove('open');
+          
+          const selectedLang = this.getAttribute('data-lang');
+          if (typeof setLanguage === 'function') {
+            setLanguage(selectedLang);
+          }
+        });
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!panel.contains(e.target) && !toggleBtn.contains(e.target)) {
+          panel.classList.remove('open');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

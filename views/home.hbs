@@ -1,0 +1,202 @@
+{{!-- ═══════════════════════════════════════
+     View: home.hbs
+     Props:
+       featuredPost  { title, excerpt, date, displayDate, slug, categoryName, readingTime }
+       recentPosts   Array<{ slug, date, displayDate, title, excerpt, tagClass, tagName }>
+═══════════════════════════════════════ --}}
+
+{{!-- ── Cinematic Editorial Hero ───────────────────────────────── --}}
+<section class="hero-cinema" id="hero-section">
+
+  {{!-- Layer 0: Ambient Background & Lighting --}}
+  <div class="hero-cinema__bg" id="hero-bg">
+    <div class="hero-cinema__bg-img" style="background-image: url('/images/cover_16x9_sharp.jpg')"></div>
+    <div class="hero-cinema__bg-overlay"></div>
+    <!-- Cinematic Lighting Orbs -->
+    <div class="hero-cinema__orb hero-cinema__orb--1"></div>
+    <div class="hero-cinema__orb hero-cinema__orb--2"></div>
+  </div>
+
+  {{!-- Layer 1: Monumental Typography (Behind Subject) --}}
+  <div class="hero-cinema__content container" id="hero-content">
+    <div class="hero-cinema__label animate-fade-in delay-1">
+      <span class="hero-cinema__label-line"></span>
+      Trivelet Aisling
+      <span class="hero-cinema__label-line"></span>
+    </div>
+    
+    <h1 class="hero-cinema__title" id="hero-title">
+      Triv<span class="hero-cinema__dot">.</span>
+    </h1>
+    
+    <p class="hero-cinema__tagline animate-fade-in-up delay-3" data-i18n="hero.tagline">
+      Một góc yêu bản thân
+    </p>
+  </div>
+
+  {{!-- Layer 2: The Subject (Breaks out of typography) --}}
+  <div class="hero-cinema__person" id="hero-person">
+    <img src="/images/person_nobg.png" alt="Triv" class="hero-cinema__person-img" />
+  </div>
+
+  {{!-- Layer 3: Typography Outline (In Front of Subject) --}}
+  <div class="hero-cinema__content container" id="hero-content-outline" style="z-index: 4;">
+    <div class="hero-cinema__label" style="opacity: 0; visibility: hidden;">
+      <span class="hero-cinema__label-line"></span>
+      Trivelet Aisling
+      <span class="hero-cinema__label-line"></span>
+    </div>
+    
+    <h1 class="hero-cinema__title hero-cinema__title--outline">
+      Triv<span class="hero-cinema__dot hero-cinema__dot--outline">.</span>
+    </h1>
+    
+    <p class="hero-cinema__tagline" style="opacity: 0; visibility: hidden;" data-i18n="hero.tagline">
+      Một góc yêu bản thân
+    </p>
+  </div>
+
+  {{!-- Layer 3: Atmospheric Elements --}}
+  <div class="hero-cinema__particles" id="hero-particles"></div>
+  <div class="hero-cinema__fade"></div>
+
+  {{!-- Scroll Hint --}}
+  <div class="hero-cinema__scroll-hint animate-fade-in delay-7" id="scroll-hint">
+    <span class="hero-cinema__scroll-text" data-i18n="hero.scroll">Khám phá</span>
+    <div class="hero-cinema__scroll-line">
+      <div class="hero-cinema__scroll-dot"></div>
+    </div>
+  </div>
+
+</section>
+
+{{!-- ── Featured Post Spotlight ───────────────────────────── --}}
+<section class="featured-spotlight container" id="featured-section">
+  <div class="featured-spotlight__inner reveal">
+    {{#if featuredPost.coverImage}}
+    <div class="featured-spotlight__image-wrap">
+      <img src="{{featuredPost.coverImage}}" alt="{{featuredPost.title}}" loading="lazy" class="featured-spotlight__image" />
+    </div>
+    {{/if}}
+    <div class="featured-spotlight__content">
+      <div class="featured-spotlight__label">
+        <span class="featured-spotlight__label-icon">✦</span>
+        <span data-i18n="section.featured">Bài viết nổi bật</span>
+      </div>
+      <h2 class="featured-spotlight__title" data-i18n="post.{{featuredPost.slug}}.title">
+        {{{featuredPost.title}}}
+      </h2>
+      <p class="featured-spotlight__excerpt" data-i18n="post.{{featuredPost.slug}}.excerpt">{{featuredPost.excerpt}}</p>
+      <div class="featured-spotlight__meta">
+        <span>{{featuredPost.displayDate}}</span>
+        <span class="divider"></span>
+        <span data-i18n="cat.{{featuredPost.category}}">{{featuredPost.categoryName}}</span>
+        {{#if featuredPost.readingTime}}
+        <span class="divider"></span>
+        <span>{{featuredPost.readingTime}}</span>
+        {{/if}}
+      </div>
+      <a href="/bai-viet/{{featuredPost.slug}}" class="featured-spotlight__link" id="featured-read-link" data-i18n="section.read_more">
+        Đọc bài viết →
+      </a>
+    </div>
+  </div>
+</section>
+
+{{!-- ── Recent Articles ─────────────────────────────────────── --}}
+<section class="articles-section container" id="articles-section">
+  <div class="section-header">
+    <h2 class="section-title" data-i18n="section.recent">Bài viết gần đây</h2>
+    {{#if recentPosts.length}}
+    <span class="section-count">{{recentPosts.length}} bài viết</span>
+    {{/if}}
+  </div>
+
+  <div class="article-list" id="article-list">
+    {{#each recentPosts}}
+      {{> article-item}}
+    {{/each}}
+  </div>
+</section>
+
+{{!-- ── Confide / Tâm sự form ──────────────────────────────── --}}
+{{> confide-form}}
+
+{{!-- ── Cinematic Hero Scripts ────────────────────────────────── --}}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Generate Particles
+    const particlesContainer = document.getElementById('hero-particles');
+    if (particlesContainer) {
+      const particleCount = 40;
+      for (let i = 0; i < particleCount; i++) {
+        const p = document.createElement('div');
+        p.className = 'hero-cinema__particle';
+        
+        // Randomize position, size, delay, and duration
+        const left = Math.random() * 100;
+        const top = Math.random() * 100;
+        const size = Math.random() * 3 + 1; // 1px to 4px
+        const delay = Math.random() * 5; // 0s to 5s
+        const duration = Math.random() * 4 + 4; // 4s to 8s
+        
+        p.style.left = `${left}%`;
+        p.style.top = `${top}%`;
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        p.style.animationDelay = `${delay}s`;
+        p.style.animationDuration = `${duration}s`;
+        
+        particlesContainer.appendChild(p);
+      }
+    }
+
+    // 2. Parallax Scroll Effect
+    const heroBg = document.querySelector('.hero-cinema__bg-img');
+    const heroTitle = document.getElementById('hero-title');
+    const heroContents = document.querySelectorAll('.hero-cinema__content');
+    const heroPerson = document.querySelector('.hero-cinema__person-img');
+    const heroSection = document.getElementById('hero-section');
+    const orbs = document.querySelectorAll('.hero-cinema__orb');
+
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          
+          if (heroSection && scrollY <= heroSection.offsetHeight) {
+            
+            // Background slow parallax
+            if (heroBg) {
+              heroBg.style.transform = `translateY(${scrollY * 0.25}px)`;
+            }
+
+            // Orbs move in opposite directions
+            if (orbs.length) {
+              orbs[0].style.transform = `translateY(${scrollY * 0.4}px)`;
+              orbs[1].style.transform = `translateY(${-scrollY * 0.2}px)`;
+            }
+
+            // Text content fades out and moves up
+            if (heroContents.length > 0) {
+              heroContents.forEach(c => {
+                c.style.transform = `translateY(${-scrollY * 0.1}px)`;
+                c.style.opacity = Math.max(1 - scrollY / 500, 0);
+              });
+            }
+            
+            // Person cutout moves up faster for 3D depth
+            if (heroPerson) {
+              heroPerson.style.transform = `translateY(${-scrollY * 0.2}px) scale(${1 + scrollY * 0.0003})`;
+            }
+          }
+          
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  });
+</script>

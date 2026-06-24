@@ -1,0 +1,111 @@
+{{!-- ═══════════════════════════════════════
+     View: about.hbs
+     Static content — no dynamic props required
+═══════════════════════════════════════ --}}
+
+<div class="about-page">
+
+  {{!-- ── About header ──────────────────────────────────────── --}}
+  <header class="about-header">
+
+    <div class="page-label-row">
+      <span class="page-label-line" aria-hidden="true"></span>
+      <span class="page-label">Về tôi</span>
+      <span class="page-label-line" aria-hidden="true"></span>
+    </div>
+
+    <h1 class="about-name">Võ Quốc Huy</h1>
+    <p class="about-alias"><em>Trivelet Aisling &mdash; Triv</em></p>
+
+  </header>
+
+  {{!-- ── Bio ────────────────────────────────────────────────── --}}
+  <section class="about-section" aria-labelledby="bio-heading">
+    <h2 class="about-section-title" id="bio-heading" aria-label="Tiểu sử">
+      <span aria-hidden="true">✦</span>
+    </h2>
+
+    <div class="about-body">
+      <p>
+        Triv là một chàng trai trẻ người Việt, đang học cách sống chậm hơn
+        trong một thế giới di chuyển quá nhanh. Sinh ra và lớn lên tại Việt
+        Nam, Triv viết về những điều bình thường nhất — một buổi sáng cầm
+        tách cà phê nhìn mưa, một cuốn sách đọc dở, một câu hỏi chưa có
+        câu trả lời.
+      </p>
+      <p>
+        Ngoài việc viết, Triv quan tâm đến triết học cá nhân, tâm lý học
+        hành vi, và nghệ thuật sống có chủ đích. Triv tin rằng mỗi người
+        đều có một câu chuyện xứng đáng được kể — kể cả khi câu chuyện ấy
+        chỉ bắt đầu từ một khoảnh khắc thật nhỏ.
+      </p>
+      <p>
+        Tên bút danh <em>Trivelet Aisling</em> là sự kết hợp giữa biệt danh
+        tuổi thơ và một từ Ireland cổ có nghĩa là &ldquo;giấc mơ&rdquo; hay
+        &ldquo;thị kiến&rdquo;. Bởi vì đôi khi, mọi thứ Triv viết đều bắt
+        đầu từ một giấc mơ ban ngày.
+      </p>
+    </div>
+  </section>
+
+  {{!-- ── Tại sao tôi viết ──────────────────────────────────── --}}
+  <section class="about-section" aria-labelledby="why-write-heading">
+    <h2 class="about-section-title" id="why-write-heading">Tại sao tôi viết</h2>
+
+    <div class="about-body">
+      <p>
+        Triv viết vì viết là cách duy nhất giúp Triv hiểu rõ hơn những gì
+        mình đang nghĩ. Rất nhiều suy nghĩ chỉ trở nên rõ ràng sau khi
+        được đặt lên trang giấy — hoặc màn hình.
+      </p>
+      <p>
+        Triv viết vì muốn tạo ra một không gian yên tĩnh giữa thế giới
+        nhiễu loạn — nơi người đọc có thể dừng lại, thở, và cảm thấy
+        mình không đơn độc với những câu hỏi chưa có lời giải.
+      </p>
+      <p>
+        Và Triv viết vì tin rằng sự thành thật — dù nhỏ bé — bao giờ cũng
+        có giá trị hơn sự hoàn hảo được dàn dựng.
+      </p>
+    </div>
+  </section>
+
+  {{!-- ── Links ─────────────────────────────────────────────── --}}
+  <section class="about-section about-links-section" aria-labelledby="links-heading">
+    <h2 class="about-section-title" id="links-heading">Tìm Triv ở đâu</h2>
+
+    <nav class="about-links" aria-label="Liên kết liên lạc">
+      <a
+        href="https://twitter.com/"
+        class="about-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="about-link-icon" aria-hidden="true">𝕏</span>
+        Twitter / X
+      </a>
+      <a
+        href="mailto:triv@example.com"
+        class="about-link"
+      >
+        <span class="about-link-icon" aria-hidden="true">✉</span>
+        Email
+      </a>
+      <a
+        href="/rss.xml"
+        class="about-link"
+      >
+        <span class="about-link-icon" aria-hidden="true">◉</span>
+        RSS Feed
+      </a>
+    </nav>
+  </section>
+
+  {{!-- ── Back link ───────────────────────────────────────────── --}}
+  <div class="about-back">
+    <a href="/" class="article-back-link">
+      <span aria-hidden="true">←</span> Về trang chủ
+    </a>
+  </div>
+
+</div>
