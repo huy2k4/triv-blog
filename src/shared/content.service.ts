@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { readFileSync, readdirSync, existsSync } from 'fs';
 import { join } from 'path';
-import { marked } from 'marked';
+import MarkdownIt = require('markdown-it');
 import { Post } from './interfaces/post.interface';
 import { generateSlug } from './utils/slug.util';
 import { calculateReadingTime } from './utils/reading-time.util';
@@ -17,6 +17,7 @@ const CATEGORY_MAP: Record<string, { tagClass: string; tagName: string }> = {
 @Injectable()
 export class ContentService {
   private readonly contentDir = join(process.cwd(), 'content');
+  private readonly md = new MarkdownIt();
 
   /** Đọc và parse frontmatter + nội dung từ một file .md */
   private parseFile(filePath: string): Post | null {
@@ -51,7 +52,7 @@ export class ContentService {
       tags:        fm.tags ? fm.tags.split(',').map(t => t.trim()) : [],
       featured:    fm.featured === 'true',
       author:      fm.author || 'Triv',
-      content:     marked(bodyRaw) as string,
+      content:     this.md.render(bodyRaw),
       coverImage:  fm.coverImage || '',
       tagClass:    cat.tagClass,
       tagName:     cat.tagName,
