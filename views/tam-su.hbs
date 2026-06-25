@@ -21,23 +21,23 @@
 {{!-- ── True Bento Grid ─────────────────────────────── --}}
 <section class="bento-grid container" aria-labelledby="replies-title">
 
-  <!-- Vùng 2x2: Form tâm sự -->
-  <div class="bento-cell cell-2x2 widget-confide reveal">
+  <!-- Vùng 6x4: Form tâm sự -->
+  <div class="bento-cell cell-6x4 widget-confide reveal">
     <h3 class="widget-title">Gửi lời tâm sự</h3>
     {{> confide-form}}
   </div>
 
-  <!-- Vùng 2x2: Trích dẫn Calligraphy -->
-  <div class="bento-cell cell-2x2 cell-quote reveal">
+  <!-- Vùng 6x4: Trích dẫn Calligraphy -->
+  <div class="bento-cell cell-6x4 cell-quote reveal">
     <blockquote class="random-quote">
       "Có những ngày bình yên đến mức, ta chỉ muốn ngồi lặng im nhìn mây trôi."
       <cite>— Triv.</cite>
     </blockquote>
   </div>
 
-  <!-- Vùng 4x4: Bài hồi đáp công khai -->
+  <!-- Vùng 12x4: Bài hồi đáp công khai -->
   {{#if publicReplies.length}}
-  <div class="bento-cell cell-4x4 reveal">
+  <div class="bento-cell cell-12x4 reveal">
     <h2 class="widget-title" id="replies-title" data-i18n="page.tamsu.replies">Những hồi đáp công khai</h2>
 
     <div class="article-list tamsu-list" role="list">

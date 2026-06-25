@@ -24,10 +24,10 @@
 <section class="bento-grid container" id="articles-section" aria-labelledby="category-articles-title">
 
   {{#if posts.length}}
-    <!-- Bài viết nổi bật (4x4) -->
-    <div class="bento-cell cell-4x4 reveal">
+    <!-- Bài viết nổi bật (8x4) -->
+    <div class="bento-cell cell-8x4 reveal">
       <h2 class="widget-title" id="category-articles-title" data-i18n="category.featured">Nổi bật</h2>
-      <a href="/bai-viet/{{posts.[0].slug}}" class="bento-article">
+      <a href="/bai-viet/{{posts.[0].slug}}" class="bento-article bento-article--featured">
         {{#if posts.[0].coverImage}}
         <div class="bento-article-thumb">
           <img src="{{posts.[0].coverImage}}" alt="{{posts.[0].title}}" loading="lazy" />
@@ -42,13 +42,8 @@
       </a>
     </div>
 
-    <!-- Ô hình ảnh trang trí (2x2) -->
-    <div class="bento-cell cell-2x2 cell-image reveal">
-      <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1470&auto=format&fit=crop" alt="Aesthetic" loading="lazy" />
-    </div>
-
-    <!-- Bộ lọc chủ đề (2x2) -->
-    <div class="bento-cell cell-2x2 reveal">
+    <!-- Bộ lọc chủ đề (4x2) -->
+    <div class="bento-cell cell-4x2 reveal">
       <h3 class="widget-title">Chủ đề</h3>
       <div class="tag-cloud">
         <a href="#" class="tag-badge">#tuduy</a>
@@ -58,37 +53,43 @@
       </div>
     </div>
 
-    <!-- Đọc nhiều nhất (2x2) -->
-    <div class="bento-cell cell-2x2 reveal">
+    <!-- Đọc nhiều nhất (4x2) -->
+    <div class="bento-cell cell-4x2 reveal">
       <h3 class="widget-title">Đọc nhiều nhất</h3>
       <ol class="most-read-list">
         <li><a href="#">Làm sao để bớt suy nghĩ quá nhiều?</a></li>
         <li><a href="#">Sự tĩnh lặng của tâm trí</a></li>
         <li><a href="#">Cuốn sách thay đổi góc nhìn</a></li>
-        <li><a href="#">Nghệ thuật buông bỏ</a></li>
       </ol>
     </div>
 
-    <!-- Ô hình ảnh trang trí thứ hai (2x2) để cân bằng lưới -->
-    <div class="bento-cell cell-2x2 cell-image reveal">
-      <img src="https://images.unsplash.com/photo-1516589178581-6cd7853177bb?q=80&w=1470&auto=format&fit=crop" alt="Coffee aesthetic" loading="lazy" />
+    <!-- Ô hình ảnh trang trí (4x4) -->
+    <div class="bento-cell cell-4x4 cell-image reveal">
+      <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1470&auto=format&fit=crop" alt="Aesthetic" loading="lazy" />
     </div>
 
-    <!-- Danh sách các bài còn lại (4x2) -->
+    <!-- Danh sách các bài còn lại (4x4) -->
     {{#each posts}}
       {{#if @index}}
-      <div class="bento-cell cell-4x2 reveal">
+      <div class="bento-cell cell-4x4 reveal">
         <a href="/bai-viet/{{slug}}" class="bento-article">
+          <div class="bento-article-thumb">
+            <img src="{{coverImage}}" alt="{{title}}" loading="lazy" />
+          </div>
           <div class="article-meta">
             <time datetime="{{date}}">{{displayDate}}</time>
             &bull; <span>{{tagName}}</span>
           </div>
           <h3 class="article-title">{{title}}</h3>
-          <p class="article-excerpt">{{excerpt}}</p>
         </a>
       </div>
       {{/if}}
     {{/each}}
+
+    <!-- Ô hình ảnh trang trí thứ hai (4x4) để cân bằng lưới -->
+    <div class="bento-cell cell-4x4 cell-image reveal">
+      <img src="https://images.unsplash.com/photo-1516589178581-6cd7853177bb?q=80&w=1470&auto=format&fit=crop" alt="Coffee aesthetic" loading="lazy" />
+    </div>
   {{else}}
     <!-- Empty state -->
     <div class="bento-cell cell-4x4 empty-state reveal" role="status">

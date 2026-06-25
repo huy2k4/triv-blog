@@ -1915,25 +1915,25 @@ body::after {
 }
 
 /* ============================================
-   TRUE BENTO GRID LAYOUT
+   TRUE BENTO GRID LAYOUT (12 COLUMNS)
    ============================================ */
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(160px, auto);
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(100px, auto);
   gap: var(--space-lg);
   padding: var(--space-2xl) 0;
 }
 
 @media (max-width: 1024px) {
   .bento-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(8, 1fr);
   }
 }
 
 @media (max-width: 640px) {
   .bento-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* 1 cột trên mobile */
   }
 }
 
@@ -1963,21 +1963,31 @@ html[data-theme='dark'] .bento-cell:hover {
   box-shadow: 0 8px 32px rgba(0,0,0,0.3);
 }
 
-/* Span utilities cho lưới */
+/* Span utilities cho lưới 12 cột */
 .cell-1x1 { grid-column: span 1; grid-row: span 1; }
 .cell-2x2 { grid-column: span 2; grid-row: span 2; }
 .cell-2x4 { grid-column: span 2; grid-row: span 4; }
 .cell-4x2 { grid-column: span 4; grid-row: span 2; }
 .cell-4x4 { grid-column: span 4; grid-row: span 4; }
+.cell-4x6 { grid-column: span 4; grid-row: span 6; }
+.cell-4x8 { grid-column: span 4; grid-row: span 8; }
+.cell-6x2 { grid-column: span 6; grid-row: span 2; }
+.cell-6x4 { grid-column: span 6; grid-row: span 4; }
+.cell-8x2 { grid-column: span 8; grid-row: span 2; }
+.cell-8x4 { grid-column: span 8; grid-row: span 4; }
+.cell-12x4 { grid-column: span 12; grid-row: span 4; }
 
 @media (max-width: 1024px) {
-  .cell-4x2, .cell-4x4 { grid-column: span 2; }
+  /* Trên tablet (8 cột), quy đổi cho vừa */
+  .cell-8x4, .cell-12x4 { grid-column: span 8; }
+  .cell-6x4, .cell-6x2 { grid-column: span 4; }
 }
 
 @media (max-width: 640px) {
-  .cell-1x1, .cell-2x2, .cell-2x4, .cell-4x2, .cell-4x4 { 
-    grid-column: span 1; 
-    grid-row: auto; 
+  /* Trên mobile (1 cột) */
+  [class*="cell-"] { 
+    grid-column: span 1 !important; 
+    grid-row: auto !important; 
   }
 }
 

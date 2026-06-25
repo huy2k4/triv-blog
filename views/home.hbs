@@ -70,10 +70,12 @@
 
 </section>
 
-{{!-- ── Featured Post Spotlight (Bento Grid) ───────────────────────────── --}}
-<section class="bento-grid container" id="featured-section">
+{{!-- ── Unified Home Dashboard (Bento Grid 12-col) ───────────────────────────── --}}
+<section class="bento-grid container" id="home-dashboard-section">
+  
+  <!-- Bài viết nổi bật (4x2) -->
   <div class="bento-cell cell-4x2 reveal">
-    <h2 class="widget-title" data-i18n="section.featured">Bài viết nổi bật</h2>
+    <h2 class="widget-title" data-i18n="section.featured">Nổi bật</h2>
     <a href="/bai-viet/{{featuredPost.slug}}" class="bento-article bento-article--horizontal">
       {{#if featuredPost.coverImage}}
       <div class="bento-article-thumb">
@@ -83,32 +85,32 @@
       <div class="bento-article-content">
         <div class="article-meta">
           <time datetime="{{featuredPost.date}}">{{featuredPost.displayDate}}</time>
-          &bull; <span data-i18n="cat.{{featuredPost.category}}">{{featuredPost.categoryName}}</span>
-          {{#if featuredPost.readingTime}}
-          &bull; <span>{{featuredPost.readingTime}}</span>
-          {{/if}}
         </div>
         <h3 class="article-title">{{{featuredPost.title}}}</h3>
-        <p class="article-excerpt">{{featuredPost.excerpt}}</p>
       </div>
     </a>
   </div>
-</section>
 
-{{!-- ── Recent Articles ─────────────────────────────────────── --}}
-<section class="articles-section container" id="articles-section">
-  <div class="section-header">
-    <h2 class="section-title" data-i18n="section.recent">Bài viết gần đây</h2>
-    {{#if recentPosts.length}}
-    <span class="section-count">{{recentPosts.length}} bài viết</span>
-    {{/if}}
+  <!-- Bài viết gần đây -->
+  {{#each recentPosts}}
+  <div class="bento-cell cell-4x2 reveal">
+    <h2 class="widget-title" style="visibility: hidden;">Gần đây</h2> <!-- Ẩn title để cân bằng grid nhưng giữ khoảng cách -->
+    <a href="/bai-viet/{{slug}}" class="bento-article bento-article--horizontal">
+      {{#if coverImage}}
+      <div class="bento-article-thumb">
+        <img src="{{coverImage}}" alt="{{title}}" loading="lazy" />
+      </div>
+      {{/if}}
+      <div class="bento-article-content">
+        <div class="article-meta">
+          <time datetime="{{date}}">{{displayDate}}</time>
+          &bull; <span>{{tagName}}</span>
+        </div>
+        <h3 class="article-title">{{title}}</h3>
+      </div>
+    </a>
   </div>
-
-  <div class="article-list" id="article-list">
-    {{#each recentPosts}}
-      {{> article-item}}
-    {{/each}}
-  </div>
+  {{/each}}
 </section>
 
 {{!-- ── Confide / Tâm sự form ──────────────────────────────── --}}

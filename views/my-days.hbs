@@ -13,9 +13,8 @@
 
 <section class="bento-grid container">
   
-  <!-- Vùng 60% (2x4 trên lưới 4 cột = chiếm 2 cột, trải dài 4 hàng) hoặc 4x4 tuỳ ý -->
-  <!-- Vì My Days có danh sách Timeline dài, để nó chiếm 2 cột (span 2) hoặc 3 cột. Ở lưới 4 cột, cho Timeline là cell-2x4 -->
-  <div class="bento-cell cell-2x4">
+  <!-- Dòng thời gian (6x6) -->
+  <div class="bento-cell cell-6x6">
     <h2 class="widget-title">Dòng thời gian</h2>
     <div class="timeline-list">
       {{#if posts.length}}
@@ -39,8 +38,8 @@
     </div>
   </div>
 
-  <!-- Reading (2x2) -->
-  <div class="bento-cell cell-2x2 cell-soul reveal">
+  <!-- Reading (6x2) -->
+  <div class="bento-cell cell-6x2 cell-soul reveal">
     <div class="soul-icon" aria-label="Đang đọc">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
@@ -49,8 +48,8 @@
     <div class="soul-text">Norwegian Wood</div>
   </div>
 
-  <!-- Listening (2x2) -->
-  <div class="bento-cell cell-2x2 cell-soul reveal">
+  <!-- Listening (6x2) -->
+  <div class="bento-cell cell-6x2 cell-soul reveal">
     <div class="soul-icon" aria-label="Đang nghe">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="5.5" cy="17.5" r="2.5"></circle>
@@ -62,8 +61,8 @@
     <div class="soul-text">Và thế là hết - Chillies</div>
   </div>
 
-  <!-- Mood (2x2) -->
-  <div class="bento-cell cell-2x2 cell-soul reveal">
+  <!-- Mood (6x2) -->
+  <div class="bento-cell cell-6x2 cell-soul reveal">
     <div class="soul-icon" aria-label="Tâm trạng">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
@@ -72,13 +71,13 @@
     <div class="soul-text">Một chút mưa bay...</div>
   </div>
 
-  <!-- Ảnh minh hoạ (2x2) -->
-  <div class="bento-cell cell-2x2 cell-image reveal">
+  <!-- Ảnh minh hoạ (4x4) -->
+  <div class="bento-cell cell-4x4 cell-image reveal">
     <img src="https://images.unsplash.com/photo-1525081905268-fc0b46e9d786?q=80&w=1470&auto=format&fit=crop" alt="My Days Aesthetic" loading="lazy" />
   </div>
 
-  <!-- Lưu trữ (2x2) -->
-  <div class="bento-cell cell-2x2 reveal">
+  <!-- Lưu trữ (4x4) -->
+  <div class="bento-cell cell-4x4 reveal">
     <h3 class="widget-title">Lưu trữ</h3>
     <ul class="archive-list">
       <li><a href="#">Tháng 6, 2026</a></li>
@@ -87,8 +86,8 @@
     </ul>
   </div>
 
-  <!-- Ảnh minh hoạ thứ hai (2x2) để cân bằng -->
-  <div class="bento-cell cell-2x2 cell-image reveal">
+  <!-- Ảnh minh hoạ thứ hai (4x4) để cân bằng -->
+  <div class="bento-cell cell-4x4 cell-image reveal">
     <img src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?q=80&w=1470&auto=format&fit=crop" alt="Nature aesthetic" loading="lazy" />
   </div>
 
