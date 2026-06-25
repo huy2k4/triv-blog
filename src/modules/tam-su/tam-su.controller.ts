@@ -21,7 +21,7 @@ export class TamSuController {
   @Post('gui')
   @Redirect()
   async submit(@Body() body: any) {
-    const isAnonymous = body.mode !== 'public';
+    const isAnonymous = body.visibility !== 'public';
     try {
       await this.svc.sendMessage({
         name: body.name,

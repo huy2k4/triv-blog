@@ -20,16 +20,21 @@ export class TamSuService {
     message: string;
     isAnonymous: boolean;
   }) {
-    const from = data.isAnonymous ? 'Ẩn danh' : data.name || 'Không rõ';
+    const from = data.isAnonymous ? 'Người dùng ẩn danh' : data.name || 'Một người bạn';
+    const subjectTitle = data.isAnonymous ? `[Tâm sự Ẩn danh] - Blog Triv` : `[Tâm sự từ ${from}] - Blog Triv`;
+    const introText = data.isAnonymous 
+      ? `Một người dùng ẩn danh muốn tâm sự với bạn rằng:`
+      : `${from} muốn tâm sự với bạn rằng:`;
+
     const replyTo = data.email || undefined;
 
     await this.transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_TO,
       replyTo,
-      subject: `[Tâm sự từ ${from}] - Blog Triv`,
+      subject: subjectTitle,
       html: `
-        <h2>Tin nhắn từ: ${from}</h2>
+        <h2>${introText}</h2>
         ${data.email ? `<p>Email người gửi: <a href="mailto:${data.email}">${data.email}</a></p>` : ''}
         <p>Chế độ: ${data.isAnonymous ? '🕶 Ẩn danh' : '👤 Công khai'}</p>
         <hr/>
