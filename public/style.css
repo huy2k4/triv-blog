@@ -1795,12 +1795,20 @@ body::after {
 /* ???????????????????????????????????????
    LANGUAGE SELECTOR
 ??????????????????????????????????????? */
-.lang-selector {
+.floating-actions {
   position: fixed;
   top: 50%;
   right: 0;
   transform: translateY(-50%);
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-sm);
+}
+
+.lang-selector-inner {
+  position: relative;
   display: flex;
   align-items: center;
 }
@@ -1851,7 +1859,7 @@ body::after {
   font-weight: 500;
 }
 
-.lang-toggle {
+.action-btn {
   position: relative;
   z-index: 10;
   background: var(--color-bg-elevated, #F5F3F3);
@@ -1869,7 +1877,7 @@ body::after {
   box-shadow: -2px 0 8px rgba(0,0,0,0.05);
 }
 
-.lang-toggle:hover {
+.action-btn:hover {
   background: var(--color-bg, #FBF9F8);
   color: var(--color-gold, #A48A54);
 }
@@ -1891,21 +1899,4 @@ body::after {
   to { opacity: 0; transform: translateY(-15px); }
 }
 
-/* --- Theme Toggle --- */
-.theme-toggle {
-  font-size: 1.3rem;
-  margin-left: auto;
-  margin-right: var(--space-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: transparent;
-  transition: background var(--duration-fast), transform var(--duration-fast);
-}
-.theme-toggle:hover {
-  background: var(--color-bg-elevated);
-  transform: scale(1.05);
-}
+
