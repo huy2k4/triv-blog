@@ -18,48 +18,39 @@
   </div>
 </header>
 
-{{!-- ── Bento Layout ─────────────────────────────── --}}
-<section class="bento-container container" aria-labelledby="replies-title">
-  <!-- Vùng 60%: Bài viết (ẩn ảnh) -->
-  <div class="bento-col-main">
-    <div class="bento-panel panel-transparent">
-      <div class="section-header">
-        <h2 class="section-title" id="replies-title" data-i18n="page.tamsu.replies">Những hồi đáp công khai</h2>
-        <span class="section-count" aria-label="{{publicReplies.length}} bài">
-          {{publicReplies.length}}
-        </span>
-      </div>
+{{!-- ── True Bento Grid ─────────────────────────────── --}}
+<section class="bento-grid container" aria-labelledby="replies-title">
 
-      <div class="article-list tamsu-list" role="list">
-        {{#each publicReplies}}
-          <div class="tamsu-item reveal">
-            <a href="/bai-viet/{{slug}}" class="tamsu-title">{{title}}</a>
-            {{#if coverImage}}
-            <img src="{{coverImage}}" alt="{{title}}" class="tamsu-thumb" loading="lazy" />
-            {{/if}}
-          </div>
-        {{/each}}
-      </div>
-    </div>
+  <!-- Vùng 2x2: Form tâm sự -->
+  <div class="bento-cell cell-2x2 widget-confide reveal">
+    <h3 class="widget-title">Gửi lời tâm sự</h3>
+    {{> confide-form}}
   </div>
 
-  <!-- Vùng 20%: Random Quote -->
-  <div class="bento-col-side">
-    <div class="bento-panel widget-quote">
-      <h3 class="widget-title">Trích dẫn</h3>
-      <blockquote class="random-quote">
-        "Có những ngày bình yên đến mức, ta chỉ muốn ngồi lặng im nhìn mây trôi."
-        <cite>- Triv.</cite>
-      </blockquote>
-    </div>
+  <!-- Vùng 2x2: Trích dẫn Calligraphy -->
+  <div class="bento-cell cell-2x2 cell-quote reveal">
+    <blockquote class="random-quote">
+      "Có những ngày bình yên đến mức, ta chỉ muốn ngồi lặng im nhìn mây trôi."
+      <cite>— Triv.</cite>
+    </blockquote>
   </div>
 
-  <!-- Vùng 20%: Confide Form -->
-  <div class="bento-col-side">
-    <div class="bento-panel widget-confide">
-      <h3 class="widget-title">Gửi lời tâm sự</h3>
-      {{> confide-form}}
+  <!-- Vùng 4x4: Bài hồi đáp công khai -->
+  {{#if publicReplies.length}}
+  <div class="bento-cell cell-4x4 reveal">
+    <h2 class="widget-title" id="replies-title" data-i18n="page.tamsu.replies">Những hồi đáp công khai</h2>
+
+    <div class="article-list tamsu-list" role="list">
+      {{#each publicReplies}}
+        <div class="tamsu-item reveal">
+          <a href="/bai-viet/{{slug}}" class="tamsu-title">{{title}}</a>
+          {{#if coverImage}}
+          <img src="{{coverImage}}" alt="{{title}}" class="tamsu-thumb" loading="lazy" />
+          {{/if}}
+        </div>
+      {{/each}}
     </div>
   </div>
+  {{/if}}
+
 </section>
-{{/if}}

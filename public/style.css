@@ -36,6 +36,7 @@
   --font-display: 'Playfair Display', 'Georgia', serif;
   --font-body:    'Cormorant Garamond', 'Georgia', serif;
   --font-ui:      'Inter', -apple-system, 'Segoe UI', sans-serif;
+  --font-accent:  'Great Vibes', cursive;
 
   /* Spacing */
   --space-xs:  0.25rem;
@@ -1914,63 +1915,110 @@ body::after {
 }
 
 /* ============================================
-   BENTO GRID LAYOUT
+   TRUE BENTO GRID LAYOUT
    ============================================ */
-.bento-container {
+.bento-grid {
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr;
-  gap: var(--space-xl);
-  align-items: start;
-  padding: var(--space-3xl) 0;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(160px, auto);
+  gap: var(--space-lg);
+  padding: var(--space-2xl) 0;
 }
 
 @media (max-width: 1024px) {
-  .bento-container {
-    grid-template-columns: 2fr 1fr;
-  }
-  .bento-col-side:last-child {
-    grid-column: 1 / -1;
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 768px) {
-  .bento-container {
+@media (max-width: 640px) {
+  .bento-grid {
     grid-template-columns: 1fr;
   }
 }
 
-.bento-panel {
-  background: transparent;
-  padding: 0;
-  border: none;
+.bento-cell {
+  background-color: #FFFFFF; /* Màu nền trắng tách biệt khỏi nền vỏ trứng */
+  border-radius: 24px;
+  padding: var(--space-xl);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.03); /* Đổ bóng cực nhẹ */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  transition: transform var(--duration) var(--ease-out), box-shadow var(--duration) var(--ease-out);
 }
 
+html[data-theme='dark'] .bento-cell {
+  background-color: #242424;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+}
+
+.bento-cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+}
+
+html[data-theme='dark'] .bento-cell:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* Span utilities cho lưới */
+.cell-1x1 { grid-column: span 1; grid-row: span 1; }
+.cell-2x2 { grid-column: span 2; grid-row: span 2; }
+.cell-2x4 { grid-column: span 2; grid-row: span 4; }
+.cell-4x2 { grid-column: span 4; grid-row: span 2; }
+.cell-4x4 { grid-column: span 4; grid-row: span 4; }
+
+@media (max-width: 1024px) {
+  .cell-4x2, .cell-4x4 { grid-column: span 2; }
+}
+
+@media (max-width: 640px) {
+  .cell-1x1, .cell-2x2, .cell-2x4, .cell-4x2, .cell-4x4 { 
+    grid-column: span 1; 
+    grid-row: auto; 
+  }
+}
+
+/* Hình ảnh độc lập */
+.cell-image {
+  padding: 0;
+}
+.cell-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Widget Header */
 .widget-title {
   font-family: var(--font-heading);
   font-size: var(--font-size-md);
   margin-bottom: var(--space-md);
-  padding-bottom: var(--space-xs);
-  border-bottom: 1px solid var(--color-border-light);
-  color: var(--color-text);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-/* Timeline (My Days) */
+/* Timeline (Nhật ký) */
 .timeline-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-xl);
   position: relative;
 }
 .timeline-item {
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 100px 1fr;
   gap: var(--space-lg);
   position: relative;
 }
 .timeline-item::before {
   content: '';
   position: absolute;
-  left: 119px;
+  left: 99px;
   top: 24px;
   bottom: -24px;
   width: 1px;
@@ -1996,7 +2044,6 @@ body::after {
   height: 7px;
   background: var(--color-gold);
   border-radius: 50%;
-  z-index: 2;
 }
 .timeline-title {
   font-family: var(--font-heading);
@@ -2010,12 +2057,32 @@ body::after {
 .timeline-title:hover {
   color: var(--color-gold);
 }
-.timeline-excerpt {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-subtle);
+
+/* Trích dẫn với Font Calligraphy */
+.cell-quote {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.random-quote {
+  font-family: var(--font-accent);
+  font-size: 2.8rem;
+  color: var(--color-gold);
+  line-height: 1.3;
+  margin: 0;
+}
+.random-quote cite {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  margin-top: var(--space-md);
+  font-style: normal;
 }
 
-/* Widgets */
+/* Tag & Danh sách */
 .tag-cloud {
   display: flex;
   flex-wrap: wrap;
@@ -2027,7 +2094,7 @@ body::after {
   color: var(--color-text-muted);
   text-decoration: none;
   border: 1px solid var(--color-border-light);
-  padding: 4px 12px;
+  padding: 6px 14px;
   border-radius: 20px;
   transition: all var(--duration-fast);
 }
@@ -2040,10 +2107,10 @@ body::after {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-md);
 }
 .most-read-list li a, .archive-list li a {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-md);
   color: var(--color-text);
   text-decoration: none;
   transition: color var(--duration-fast);
@@ -2052,78 +2119,63 @@ body::after {
   color: var(--color-gold);
 }
 
+/* Thời tiết tâm hồn */
 .soul-item {
   margin-bottom: var(--space-md);
 }
 .soul-label {
   display: block;
   font-family: var(--font-ui);
-  color: var(--color-text-muted);
+  color: var(--color-text-subtle);
   font-size: var(--font-size-xs);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   margin-bottom: 4px;
 }
 .soul-value {
-  font-size: var(--font-size-sm);
-  color: var(--color-text);
-}
-
-.random-quote {
-  font-family: var(--font-heading);
-  font-style: italic;
+  font-family: var(--font-display);
   font-size: var(--font-size-md);
   color: var(--color-text);
-  line-height: 1.6;
-}
-.random-quote cite {
-  display: block;
-  font-family: var(--font-ui);
-  font-size: var(--font-size-xs);
-  font-style: normal;
-  color: var(--color-text-muted);
-  margin-top: var(--space-sm);
-  text-align: right;
+  font-style: italic;
 }
 
-/* Tâm sự Hover Thumbnail */
-.tamsu-list {
+/* Bài viết Bento */
+.bento-article {
+  text-decoration: none;
+  color: inherit;
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  height: 100%;
 }
-.tamsu-item {
-  position: relative;
-  padding-bottom: var(--space-lg);
-  border-bottom: 1px solid var(--color-border-light);
+.bento-article .article-meta {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
-.tamsu-title {
+.bento-article .article-title {
   font-family: var(--font-heading);
   font-size: var(--font-size-xl);
-  color: var(--color-text);
-  text-decoration: none;
-  display: inline-block;
+  line-height: 1.3;
+  margin-bottom: var(--space-md);
   transition: color var(--duration-fast);
 }
-.tamsu-title:hover {
+.bento-article:hover .article-title {
   color: var(--color-gold);
 }
-.tamsu-thumb {
-  position: absolute;
-  top: 50%;
-  right: 20%;
-  transform: translateY(-50%) translateX(20px);
-  width: 240px;
-  height: 160px;
-  object-fit: cover;
-  opacity: 0;
-  pointer-events: none;
-  transition: all var(--duration) var(--ease-out);
-  border-radius: 4px;
-  z-index: 10;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+.bento-article .article-excerpt {
+  color: var(--color-text-subtle);
+  margin-bottom: auto; /* Push tags to bottom */
 }
-.tamsu-title:hover + .tamsu-thumb {
-  opacity: 1;
-  transform: translateY(-50%) translateX(0);
+.bento-article-thumb {
+  margin: calc(-1 * var(--space-xl));
+  margin-bottom: var(--space-xl);
+  height: 200px;
+}
+.bento-article-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

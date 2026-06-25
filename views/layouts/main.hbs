@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,600;1,700;1,900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,600;1,700;1,900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=Great+Vibes&display=swap"
     rel="stylesheet"
   />
 
@@ -138,18 +138,11 @@
   <div class="floating-actions" id="floating-actions">
     <!-- Theme Toggle -->
     <button class="action-btn theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark Mode">
-      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="5"></circle>
-        <line x1="12" y1="1" x2="12" y2="3"></line>
-        <line x1="12" y1="21" x2="12" y2="23"></line>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-        <line x1="1" y1="12" x2="3" y2="12"></line>
-        <line x1="21" y1="12" x2="23" y2="12"></line>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Elegant Sparkle/Star instead of generic sun -->
+        <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"></path>
       </svg>
-      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
       </svg>
     </button>
@@ -162,11 +155,8 @@
         <button class="lang-option active" data-lang="ja">日本語</button>
       </div>
       <button class="action-btn lang-toggle" id="lang-toggle" aria-label="Chọn ngôn ngữ">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="2" y1="12" x2="22" y2="12"></line>
-          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-        </svg>
+        <!-- Editorial Language Icon (Text-based 'Aa') -->
+        <span style="font-family: var(--font-display); font-style: italic; font-size: 16px; line-height: 1;">Aa</span>
       </button>
     </div>
   </div>

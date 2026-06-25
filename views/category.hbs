@@ -20,61 +20,67 @@
   </div>
 </header>
 
-{{!-- ── Article list (Bento Grid) ───────────────────────── --}}
-<section class="bento-container container" id="articles-section" aria-labelledby="category-articles-title">
-  
-  <!-- Vùng 60%: Bài viết -->
-  <div class="bento-col-main">
-    <div class="bento-panel panel-transparent">
-      <div class="section-header">
-        <h2 class="section-title" id="category-articles-title" data-i18n="category.all">Tất cả bài viết</h2>
-        {{#if posts.length}}
-        <span class="section-count" aria-label="{{posts.length}} bài viết">{{posts.length}}</span>
+{{!-- ── True Bento Grid ───────────────────────── --}}
+<section class="bento-grid container" id="articles-section" aria-labelledby="category-articles-title">
+
+  {{#if posts.length}}
+    <!-- Bài viết nổi bật (4x4) -->
+    <div class="bento-cell cell-4x4 reveal">
+      <h2 class="widget-title" id="category-articles-title" data-i18n="category.featured">Nổi bật</h2>
+      <a href="/bai-viet/{{posts.[0].slug}}" class="bento-article">
+        {{#if posts.[0].coverImage}}
+        <div class="bento-article-thumb">
+          <img src="{{posts.[0].coverImage}}" alt="{{posts.[0].title}}" loading="lazy" />
+        </div>
         {{/if}}
-      </div>
-
-      {{#if posts.length}}
-      <div class="article-list" id="article-list" role="list">
-        {{#each posts}}
-          {{> article-item}}
-        {{/each}}
-      </div>
-      {{else}}
-      <div class="empty-state" role="status">
-        <span class="empty-ornament" aria-hidden="true">✦</span>
-        <p class="empty-title" data-i18n="empty.title">Chưa có bài viết nào...</p>
-        <p class="empty-description" data-i18n="empty.desc">Triv vẫn đang viết. Quay lại sau nhé.</p>
-        <a href="/" class="empty-back-link" data-i18n="empty.back">← Về trang chủ</a>
-      </div>
-      {{/if}}
+        <div class="article-meta">
+          <time datetime="{{posts.[0].date}}">{{posts.[0].displayDate}}</time>
+          &bull; <span>{{posts.[0].tagName}}</span>
+        </div>
+        <h3 class="article-title">{{posts.[0].title}}</h3>
+        <p class="article-excerpt">{{posts.[0].excerpt}}</p>
+      </a>
     </div>
-  </div>
 
-  <!-- Vùng 20%: Bộ lọc -->
-  <div class="bento-col-side">
-    <div class="bento-panel widget-filters">
+    <!-- Ô hình ảnh trang trí (2x2) -->
+    <div class="bento-cell cell-2x2 cell-image reveal">
+      <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1470&auto=format&fit=crop" alt="Aesthetic" loading="lazy" />
+    </div>
+
+    <!-- Bộ lọc chủ đề (2x2) -->
+    <div class="bento-cell cell-2x2 reveal">
       <h3 class="widget-title">Chủ đề</h3>
       <div class="tag-cloud">
         <a href="#" class="tag-badge">#tuduy</a>
         <a href="#" class="tag-badge">#sachhay</a>
         <a href="#" class="tag-badge">#kienthuc</a>
-        <a href="#" class="tag-badge">#phattrienbanthan</a>
         <a href="#" class="tag-badge">#chill</a>
       </div>
     </div>
-  </div>
 
-  <!-- Vùng 20%: Đọc nhiều nhất -->
-  <div class="bento-col-side">
-    <div class="bento-panel widget-most-read">
-      <h3 class="widget-title">Đọc nhiều nhất</h3>
-      <ol class="most-read-list">
-        <li><a href="#">Làm sao để bớt suy nghĩ quá nhiều?</a></li>
-        <li><a href="#">Sự tĩnh lặng của tâm trí</a></li>
-        <li><a href="#">Cuốn sách thay đổi góc nhìn</a></li>
-        <li><a href="#">Nghệ thuật buông bỏ</a></li>
-      </ol>
+    <!-- Danh sách các bài còn lại (4x2) -->
+    {{#each posts}}
+      {{#if @index}}
+      <div class="bento-cell cell-4x2 reveal">
+        <a href="/bai-viet/{{slug}}" class="bento-article">
+          <div class="article-meta">
+            <time datetime="{{date}}">{{displayDate}}</time>
+            &bull; <span>{{tagName}}</span>
+          </div>
+          <h3 class="article-title">{{title}}</h3>
+          <p class="article-excerpt">{{excerpt}}</p>
+        </a>
+      </div>
+      {{/if}}
+    {{/each}}
+  {{else}}
+    <!-- Empty state -->
+    <div class="bento-cell cell-4x4 empty-state reveal" role="status">
+      <span class="empty-ornament" aria-hidden="true">✦</span>
+      <p class="empty-title" data-i18n="empty.title">Chưa có bài viết nào...</p>
+      <p class="empty-description" data-i18n="empty.desc">Triv vẫn đang viết. Quay lại sau nhé.</p>
+      <a href="/" class="empty-back-link" data-i18n="empty.back">← Về trang chủ</a>
     </div>
-  </div>
+  {{/if}}
 
 </section>

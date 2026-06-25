@@ -11,63 +11,56 @@
   </div>
 </header>
 
-<section class="bento-container container">
-  <!-- Vùng 60%: Timeline -->
-  <div class="bento-col-main">
-    <div class="bento-panel panel-timeline">
-      <div class="timeline-list">
-        {{#if posts.length}}
-          {{#each posts}}
-          <div class="timeline-item reveal">
-            <div class="timeline-date">{{displayDate}}</div>
-            <div class="timeline-content">
-              <a href="/bai-viet/{{slug}}" class="timeline-title">{{title}}</a>
-              {{#if excerpt}}
-              <p class="timeline-excerpt">{{excerpt}}</p>
-              {{/if}}
-            </div>
+<section class="bento-grid container">
+  
+  <!-- Vùng 60% (2x4 trên lưới 4 cột = chiếm 2 cột, trải dài 4 hàng) hoặc 4x4 tuỳ ý -->
+  <!-- Vì My Days có danh sách Timeline dài, để nó chiếm 2 cột (span 2) hoặc 3 cột. Ở lưới 4 cột, cho Timeline là cell-2x4 -->
+  <div class="bento-cell cell-2x4">
+    <h2 class="widget-title">Dòng thời gian</h2>
+    <div class="timeline-list">
+      {{#if posts.length}}
+        {{#each posts}}
+        <div class="timeline-item reveal">
+          <div class="timeline-date">{{displayDate}}</div>
+          <div class="timeline-content">
+            <a href="/bai-viet/{{slug}}" class="timeline-title">{{title}}</a>
+            {{#if excerpt}}
+            <p class="timeline-excerpt">{{excerpt}}</p>
+            {{/if}}
           </div>
-          {{/each}}
-        {{else}}
-          <div class="empty-state" role="status">
-            <span class="empty-ornament" aria-hidden="true">✦</span>
-            <p class="empty-title" data-i18n="empty.title">Chưa có bài viết nào...</p>
-          </div>
-        {{/if}}
+        </div>
+        {{/each}}
+      {{else}}
+        <div class="empty-state" role="status">
+          <span class="empty-ornament" aria-hidden="true">✦</span>
+          <p class="empty-title" data-i18n="empty.title">Chưa có bài viết nào...</p>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+
+  <!-- Thời tiết tâm hồn (2x2) -->
+  <div class="bento-cell cell-2x2">
+    <h3 class="widget-title">Thời tiết tâm hồn</h3>
+    <div class="widget-content">
+      <div class="soul-item">
+        <span class="soul-label">📖 Đang đọc</span>
+        <span class="soul-value">Norwegian Wood</span>
+      </div>
+      <div class="soul-item">
+        <span class="soul-label">🎵 Đang nghe</span>
+        <span class="soul-value">Và thế là hết - Chillies</span>
+      </div>
+      <div class="soul-item">
+        <span class="soul-label">💭 Tâm trạng</span>
+        <span class="soul-value">Một chút mưa bay...</span>
       </div>
     </div>
   </div>
 
-  <!-- Vùng 20%: Thời tiết tâm hồn -->
-  <div class="bento-col-side">
-    <div class="bento-panel widget-soul-weather">
-      <h3 class="widget-title">Thời tiết tâm hồn</h3>
-      <div class="widget-content">
-        <div class="soul-item">
-          <span class="soul-label">📖 Đang đọc</span>
-          <span class="soul-value">Norwegian Wood</span>
-        </div>
-        <div class="soul-item">
-          <span class="soul-label">🎵 Đang nghe</span>
-          <span class="soul-value">Và thế là hết - Chillies</span>
-        </div>
-        <div class="soul-item">
-          <span class="soul-label">💭 Tâm trạng</span>
-          <span class="soul-value">Một chút mưa bay...</span>
-        </div>
-      </div>
-    </div>
+  <!-- Ảnh minh hoạ (2x2) thay vì Archive để bù đắp khoảng trống -->
+  <div class="bento-cell cell-2x2 cell-image reveal">
+    <img src="https://images.unsplash.com/photo-1525081905268-fc0b46e9d786?q=80&w=1470&auto=format&fit=crop" alt="My Days Aesthetic" loading="lazy" />
   </div>
 
-  <!-- Vùng 20%: Archive -->
-  <div class="bento-col-side">
-    <div class="bento-panel widget-archive">
-      <h3 class="widget-title">Lưu trữ</h3>
-      <ul class="archive-list">
-        <li><a href="#">Tháng 6, 2026</a></li>
-        <li><a href="#">Tháng 5, 2026</a></li>
-        <li><a href="#">Tháng 4, 2026</a></li>
-      </ul>
-    </div>
-  </div>
 </section>
