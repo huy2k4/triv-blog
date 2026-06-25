@@ -9,26 +9,26 @@
 /* --- Design Tokens --- */
 :root {
   /* Colors — Warm Editorial Palette */
-  --color-bg:          #FBF9F8;  /* Surface Bright */
-  --color-bg-elevated: #F5F3F3;  /* Surface Container */
-  --color-bg-subtle:   #F0EEEE;
-  --color-surface:     #F5F3F3;  /* Surface Container */
-  --color-text:        #2C2C2C;  /* Primary Text / Deep Charcoal */
-  --color-text-muted:  #6B6B6B;  /* Secondary Text */
-  --color-text-subtle: #9A9A9A;
-  --color-border:      #DBDAD9;  /* Surface Dim */
-  --color-border-light:#E8E6E5;
+  --color-bg:          #FDFBF7;  /* Surface Bright */
+  --color-bg-elevated: #F8F6F0;  /* Surface Container */
+  --color-bg-subtle:   #F2EFE9;
+  --color-surface:     #F8F6F0;  /* Surface Container */
+  --color-text:        #1A1A1A;  /* Primary Text / Deep Charcoal */
+  --color-text-muted:  #5C5C5C;  /* Secondary Text */
+  --color-text-subtle: #8A8A8A;
+  --color-border:      #E6E2D8;  /* Surface Dim */
+  --color-border-light:#EFECE6;
 
   /* Accent Colors */
   --color-gold:        #A48A54;  /* Antique Gold */
   --color-gold-light:  #8B7244;
   --color-gold-dim:    rgba(164, 138, 84, 0.10);
-  --color-crimson:     #8b1a30;
-  --color-crimson-dim: rgba(139, 26, 48, 0.07);
+  --color-crimson:     #8B3A3A;
+  --color-crimson-dim: rgba(139, 58, 58, 0.07);
   --color-royal:       #1e4a8a;
   --color-royal-dim:   rgba(30, 74, 138, 0.07);
-  --color-sage:        #4a7a4a;
-  --color-sage-dim:    rgba(74, 122, 74, 0.07);
+  --color-sage:        #4A5D23;
+  --color-sage-dim:    rgba(74, 93, 35, 0.07);
   --color-amber:       #9a6e28;
   --color-amber-dim:   rgba(154, 110, 40, 0.07);
 
@@ -49,7 +49,7 @@
 
   /* Layout */
   --max-width:      1200px;
-  --content-width:  720px;
+  --content-width:  680px;
   --narrow-width:   640px;
 
   /* Transitions */
@@ -81,7 +81,7 @@ body {
   font-weight: 400;
   color: var(--color-text);
   background-color: var(--color-bg);
-  line-height: 1.7;
+  line-height: 1.85;
   overflow-x: hidden;
   min-height: 100vh;
 }
@@ -143,7 +143,7 @@ button {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(251, 249, 248, 0.88);
+  background: rgba(253, 251, 247, 0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--color-border-light);
@@ -153,7 +153,7 @@ button {
 }
 
 .site-header.scrolled {
-  background: rgba(251, 249, 248, 0.96);
+  background: rgba(253, 251, 247, 0.96);
   box-shadow: 0 1px 12px rgba(44, 44, 44, 0.06);
 }
 
@@ -1396,7 +1396,7 @@ button {
   font-weight: 400;
   line-height: 1.85;
   color: var(--color-text);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-xl);
 }
 
 .article-body p:first-of-type::first-letter {
