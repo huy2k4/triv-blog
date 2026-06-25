@@ -21,6 +21,14 @@
 
   <link rel="stylesheet" href="/style.css?v=2" />
 
+  <!-- Check Theme Early -->
+  <script>
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
+
   <!-- Grain texture overlay -->
   <style>
     body::after {
@@ -57,6 +65,9 @@
         <a href="/tam-su" class="nav-link {{#if isTamSu}}active{{/if}}" data-i18n="nav.tamsu">Tâm sự với tôi</a>
       </nav>
 
+      <!-- Theme Toggle -->
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+
       <!-- Hamburger -->
       <button
         class="menu-toggle"
@@ -73,9 +84,10 @@
   </header>
 
   <!-- ═══════════════════════════════════════
+  <!-- ═══════════════════════════════════════
        MAIN CONTENT
   ═══════════════════════════════════════ -->
-  <main class="site-main" id="main-content">
+  <main class="site-main page-transition" id="main-content">
     {{{body}}}
   </main>
 
@@ -233,6 +245,51 @@
         if (!panel.contains(e.target) && !toggleBtn.contains(e.target)) {
           panel.classList.remove('open');
         }
+      });
+    })();
+
+    // ── Theme Toggle ───────────────────────────────────────
+    (function() {
+      const themeToggle = document.getElementById('theme-toggle');
+      if (!themeToggle) return;
+
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+
+      themeToggle.addEventListener('click', () => {
+        let theme = document.documentElement.getAttribute('data-theme');
+        if (theme === 'dark') {
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+          themeToggle.textContent = '🌙';
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+          themeToggle.textContent = '☀️';
+        }
+      });
+    })();
+
+    // ── Page Transitions ───────────────────────────────────
+    (function() {
+      const links = document.querySelectorAll('a[href^="/"]');
+      const mainContent = document.getElementById('main-content');
+      if (!mainContent) return;
+
+      links.forEach(link => {
+        if (link.target === '_blank' || link.href.includes('#')) return;
+
+        link.addEventListener('click', function(e) {
+          // If the link is language toggle or exact same path, don't intercept
+          if (this.classList.contains('lang-option')) return;
+          
+          e.preventDefault();
+          const targetUrl = this.href;
+          mainContent.classList.add('fade-out');
+          setTimeout(() => {
+            window.location.href = targetUrl;
+          }, 300);
+        });
       });
     })();
   </script>
