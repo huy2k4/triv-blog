@@ -25,16 +25,16 @@
 
   {{#if posts.length}}
     <!-- Bài viết nổi bật (8x4) -->
-    <div class="bento-cell cell-8x4 reveal">
-      <h2 class="widget-title" id="category-articles-title" data-i18n="category.featured">Nổi bật</h2>
-      <a href="/bai-viet/{{posts.[0].slug}}" class="bento-article bento-article--featured">
+    <div class="bento-cell cell-8x4 reveal" style="padding: 0;">
+      <a href="/bai-viet/{{posts.[0].slug}}" class="bento-article bento-article--featured" style="padding: var(--space-xl); height: 100%;">
         {{#if posts.[0].coverImage}}
         <div class="bento-article-thumb">
           <img src="{{posts.[0].coverImage}}" alt="{{posts.[0].title}}" loading="lazy" />
         </div>
         {{/if}}
         <div class="article-meta">
-          <time datetime="{{posts.[0].date}}">{{posts.[0].displayDate}}</time>
+          <span class="tag-badge" style="background: var(--color-gold); color: white; border: none;" data-i18n="category.featured" id="category-articles-title">Nổi bật</span>
+          &bull; <time datetime="{{posts.[0].date}}">{{posts.[0].displayDate}}</time>
           &bull; <span>{{posts.[0].tagName}}</span>
         </div>
         <h3 class="article-title">{{posts.[0].title}}</h3>

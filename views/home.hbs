@@ -74,9 +74,8 @@
 <section class="bento-grid container" id="home-dashboard-section">
   
   <!-- Bài viết nổi bật (6x4) -->
-  <div class="bento-cell cell-6x4 reveal">
-    <h2 class="widget-title" data-i18n="section.featured">Nổi bật</h2>
-    <a href="/bai-viet/{{featuredPost.slug}}" class="bento-article bento-article--split-1-3">
+  <div class="bento-cell cell-6x4 reveal" style="padding: 0;">
+    <a href="/bai-viet/{{featuredPost.slug}}" class="bento-article bento-article--split-1-3" style="padding: var(--space-xl); height: 100%;">
       {{#if featuredPost.coverImage}}
       <div class="bento-article-thumb">
         <img src="{{featuredPost.coverImage}}" alt="{{featuredPost.title}}" loading="lazy" />
@@ -84,9 +83,10 @@
       {{/if}}
       <div class="bento-article-content">
         <div class="article-meta">
-          <time datetime="{{featuredPost.date}}">{{featuredPost.displayDate}}</time>
+          <span class="tag-badge" style="background: var(--color-gold); color: white; border: none;" data-i18n="section.featured">Nổi bật</span>
+          &bull; <time datetime="{{featuredPost.date}}">{{featuredPost.displayDate}}</time>
         </div>
-        <h3 class="article-title">{{{featuredPost.title}}}</h3>
+        <h3 class="article-title" style="font-size: 2rem;">{{{featuredPost.title}}}</h3>
         <p class="article-excerpt">{{featuredPost.excerpt}}</p>
       </div>
     </a>
@@ -94,9 +94,8 @@
 
   <!-- Bài viết gần đây -->
   {{#each recentPosts}}
-  <div class="bento-cell cell-6x2 reveal">
-    <h2 class="widget-title" style="visibility: hidden;" data-i18n="section.recent">Gần đây</h2> <!-- Ẩn title để cân bằng grid nhưng giữ khoảng cách -->
-    <a href="/bai-viet/{{slug}}" class="bento-article bento-article--horizontal">
+  <div class="bento-cell cell-6x2 reveal" style="padding: 0;">
+    <a href="/bai-viet/{{slug}}" class="bento-article bento-article--horizontal" style="padding: var(--space-xl); height: 100%;">
       {{#if coverImage}}
       <div class="bento-article-thumb">
         <img src="{{coverImage}}" alt="{{title}}" loading="lazy" />
