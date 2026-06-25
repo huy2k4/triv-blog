@@ -2193,3 +2193,30 @@ html[data-theme='dark'] .bento-cell:hover {
   object-fit: cover;
   display: block;
 }
+
+/* Horizontal Modifier cho 4x2 cell */
+.bento-article--horizontal {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-xl);
+}
+@media (min-width: 768px) {
+  .bento-article--horizontal .bento-article-thumb {
+    margin: calc(-1 * var(--space-xl)) 0 calc(-1 * var(--space-xl)) calc(-1 * var(--space-xl));
+    width: 45%;
+    height: calc(100% + 2 * var(--space-xl));
+    aspect-ratio: unset;
+    border-radius: 24px 0 0 24px;
+    flex-shrink: 0;
+  }
+  .bento-article--horizontal .bento-article-content {
+    width: 55%;
+    padding-right: var(--space-md);
+  }
+}
+@media (max-width: 767px) {
+  .bento-article--horizontal {
+    flex-direction: column;
+    gap: 0;
+  }
+}

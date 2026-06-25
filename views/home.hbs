@@ -70,36 +70,28 @@
 
 </section>
 
-{{!-- ── Featured Post Spotlight ───────────────────────────── --}}
-<section class="featured-spotlight container" id="featured-section">
-  <div class="featured-spotlight__inner reveal">
-    {{#if featuredPost.coverImage}}
-    <div class="featured-spotlight__image-wrap">
-      <img src="{{featuredPost.coverImage}}" alt="{{featuredPost.title}}" loading="lazy" class="featured-spotlight__image" />
-    </div>
-    {{/if}}
-    <div class="featured-spotlight__content">
-      <div class="featured-spotlight__label">
-        <span class="featured-spotlight__label-icon">✦</span>
-        <span data-i18n="section.featured">Bài viết nổi bật</span>
+{{!-- ── Featured Post Spotlight (Bento Grid) ───────────────────────────── --}}
+<section class="bento-grid container" id="featured-section">
+  <div class="bento-cell cell-4x2 reveal">
+    <h2 class="widget-title" data-i18n="section.featured">Bài viết nổi bật</h2>
+    <a href="/bai-viet/{{featuredPost.slug}}" class="bento-article bento-article--horizontal">
+      {{#if featuredPost.coverImage}}
+      <div class="bento-article-thumb">
+        <img src="{{featuredPost.coverImage}}" alt="{{featuredPost.title}}" loading="lazy" />
       </div>
-      <h2 class="featured-spotlight__title" data-i18n="post.{{featuredPost.slug}}.title">
-        {{{featuredPost.title}}}
-      </h2>
-      <p class="featured-spotlight__excerpt" data-i18n="post.{{featuredPost.slug}}.excerpt">{{featuredPost.excerpt}}</p>
-      <div class="featured-spotlight__meta">
-        <span>{{featuredPost.displayDate}}</span>
-        <span class="divider"></span>
-        <span data-i18n="cat.{{featuredPost.category}}">{{featuredPost.categoryName}}</span>
-        {{#if featuredPost.readingTime}}
-        <span class="divider"></span>
-        <span>{{featuredPost.readingTime}}</span>
-        {{/if}}
+      {{/if}}
+      <div class="bento-article-content">
+        <div class="article-meta">
+          <time datetime="{{featuredPost.date}}">{{featuredPost.displayDate}}</time>
+          &bull; <span data-i18n="cat.{{featuredPost.category}}">{{featuredPost.categoryName}}</span>
+          {{#if featuredPost.readingTime}}
+          &bull; <span>{{featuredPost.readingTime}}</span>
+          {{/if}}
+        </div>
+        <h3 class="article-title">{{{featuredPost.title}}}</h3>
+        <p class="article-excerpt">{{featuredPost.excerpt}}</p>
       </div>
-      <a href="/bai-viet/{{featuredPost.slug}}" class="featured-spotlight__link" id="featured-read-link" data-i18n="section.read_more">
-        Đọc bài viết →
-      </a>
-    </div>
+    </a>
   </div>
 </section>
 
