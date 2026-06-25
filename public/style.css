@@ -244,6 +244,12 @@ button {
   color: var(--color-gold);
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
 /* Navigation */
 .main-nav {
   display: flex;
