@@ -8,7 +8,7 @@ export class MyDaysController {
 
   // Route GET /my-days — hiển thị danh sách bài viết chuyên mục My Days
   @Get()
-  @Render('category')
+  @Render('my-days')
   index() {
     return {
       title: 'My Days — Triv.',

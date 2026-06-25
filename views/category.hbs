@@ -20,33 +20,61 @@
   </div>
 </header>
 
-{{!-- ── Article list ────────────────────────────────────────── --}}
-<section class="articles-section container" id="articles-section" aria-labelledby="category-articles-title">
-  <div class="section-header">
-    <h2 class="section-title" id="category-articles-title" data-i18n="category.all">Tất cả bài viết</h2>
-    {{#if posts.length}}
-    <span class="section-count" aria-label="{{posts.length}} bài viết">{{posts.length}}</span>
-    {{/if}}
-  </div>
+{{!-- ── Article list (Bento Grid) ───────────────────────── --}}
+<section class="bento-container container" id="articles-section" aria-labelledby="category-articles-title">
+  
+  <!-- Vùng 60%: Bài viết -->
+  <div class="bento-col-main">
+    <div class="bento-panel panel-transparent">
+      <div class="section-header">
+        <h2 class="section-title" id="category-articles-title" data-i18n="category.all">Tất cả bài viết</h2>
+        {{#if posts.length}}
+        <span class="section-count" aria-label="{{posts.length}} bài viết">{{posts.length}}</span>
+        {{/if}}
+      </div>
 
-  {{#if posts.length}}
-  <div class="article-list" id="article-list" role="list">
-    {{#each posts}}
-      {{> article-item}}
-    {{/each}}
-  </div>
-
-    {{else}}
-    {{!-- ── Empty state ──────────────────────────── --}}
-    <div class="empty-state" role="status">
-      <span class="empty-ornament" aria-hidden="true">✦</span>
-      <p class="empty-title" data-i18n="empty.title">Chưa có bài viết nào...</p>
-      <p class="empty-description" data-i18n="empty.desc">
-        Triv vẫn đang viết. Quay lại sau nhé.
-      </p>
-      <a href="/" class="empty-back-link" data-i18n="empty.back">← Về trang chủ</a>
+      {{#if posts.length}}
+      <div class="article-list" id="article-list" role="list">
+        {{#each posts}}
+          {{> article-item}}
+        {{/each}}
+      </div>
+      {{else}}
+      <div class="empty-state" role="status">
+        <span class="empty-ornament" aria-hidden="true">✦</span>
+        <p class="empty-title" data-i18n="empty.title">Chưa có bài viết nào...</p>
+        <p class="empty-description" data-i18n="empty.desc">Triv vẫn đang viết. Quay lại sau nhé.</p>
+        <a href="/" class="empty-back-link" data-i18n="empty.back">← Về trang chủ</a>
+      </div>
+      {{/if}}
     </div>
-    {{/if}}
-
   </div>
+
+  <!-- Vùng 20%: Bộ lọc -->
+  <div class="bento-col-side">
+    <div class="bento-panel widget-filters">
+      <h3 class="widget-title">Chủ đề</h3>
+      <div class="tag-cloud">
+        <a href="#" class="tag-badge">#tuduy</a>
+        <a href="#" class="tag-badge">#sachhay</a>
+        <a href="#" class="tag-badge">#kienthuc</a>
+        <a href="#" class="tag-badge">#phattrienbanthan</a>
+        <a href="#" class="tag-badge">#chill</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vùng 20%: Đọc nhiều nhất -->
+  <div class="bento-col-side">
+    <div class="bento-panel widget-most-read">
+      <h3 class="widget-title">Đọc nhiều nhất</h3>
+      <ol class="most-read-list">
+        <li><a href="#">Làm sao để bớt suy nghĩ quá nhiều?</a></li>
+        <li><a href="#">Sự tĩnh lặng của tâm trí</a></li>
+        <li><a href="#">Cuốn sách thay đổi góc nhìn</a></li>
+        <li><a href="#">Nghệ thuật buông bỏ</a></li>
+      </ol>
+    </div>
+  </div>
+
 </section>

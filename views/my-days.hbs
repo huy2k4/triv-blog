@@ -1,0 +1,73 @@
+{{!-- ═══════════════════════════════════════
+     View: my-days.hbs
+     Props:
+       categoryName        string
+       posts               Array<{ slug, date, displayDate, title, excerpt, tagClass, tagName }>
+═══════════════════════════════════════ --}}
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <h1 class="page-title" data-i18n="cat.my-days">{{categoryName}}</h1>
+  </div>
+</header>
+
+<section class="bento-container container">
+  <!-- Vùng 60%: Timeline -->
+  <div class="bento-col-main">
+    <div class="bento-panel panel-timeline">
+      <div class="timeline-list">
+        {{#if posts.length}}
+          {{#each posts}}
+          <div class="timeline-item reveal">
+            <div class="timeline-date">{{displayDate}}</div>
+            <div class="timeline-content">
+              <a href="/bai-viet/{{slug}}" class="timeline-title">{{title}}</a>
+              {{#if excerpt}}
+              <p class="timeline-excerpt">{{excerpt}}</p>
+              {{/if}}
+            </div>
+          </div>
+          {{/each}}
+        {{else}}
+          <div class="empty-state" role="status">
+            <span class="empty-ornament" aria-hidden="true">✦</span>
+            <p class="empty-title" data-i18n="empty.title">Chưa có bài viết nào...</p>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+  <!-- Vùng 20%: Thời tiết tâm hồn -->
+  <div class="bento-col-side">
+    <div class="bento-panel widget-soul-weather">
+      <h3 class="widget-title">Thời tiết tâm hồn</h3>
+      <div class="widget-content">
+        <div class="soul-item">
+          <span class="soul-label">📖 Đang đọc</span>
+          <span class="soul-value">Norwegian Wood</span>
+        </div>
+        <div class="soul-item">
+          <span class="soul-label">🎵 Đang nghe</span>
+          <span class="soul-value">Và thế là hết - Chillies</span>
+        </div>
+        <div class="soul-item">
+          <span class="soul-label">💭 Tâm trạng</span>
+          <span class="soul-value">Một chút mưa bay...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vùng 20%: Archive -->
+  <div class="bento-col-side">
+    <div class="bento-panel widget-archive">
+      <h3 class="widget-title">Lưu trữ</h3>
+      <ul class="archive-list">
+        <li><a href="#">Tháng 6, 2026</a></li>
+        <li><a href="#">Tháng 5, 2026</a></li>
+        <li><a href="#">Tháng 4, 2026</a></li>
+      </ul>
+    </div>
+  </div>
+</section>

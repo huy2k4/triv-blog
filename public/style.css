@@ -1913,4 +1913,217 @@ body::after {
   to { opacity: 0; transform: translateY(-15px); }
 }
 
+/* ============================================
+   BENTO GRID LAYOUT
+   ============================================ */
+.bento-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+  padding: var(--space-3xl) 0;
+}
 
+@media (max-width: 1024px) {
+  .bento-container {
+    grid-template-columns: 2fr 1fr;
+  }
+  .bento-col-side:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .bento-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bento-panel {
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+.widget-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-md);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--color-border-light);
+  color: var(--color-text);
+}
+
+/* Timeline (My Days) */
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  position: relative;
+}
+.timeline-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: var(--space-lg);
+  position: relative;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 119px;
+  top: 24px;
+  bottom: -24px;
+  width: 1px;
+  background: var(--color-border-light);
+}
+.timeline-item:last-child::before {
+  display: none;
+}
+.timeline-date {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: right;
+  padding-right: var(--space-md);
+  position: relative;
+}
+.timeline-date::after {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: 8px;
+  width: 7px;
+  height: 7px;
+  background: var(--color-gold);
+  border-radius: 50%;
+  z-index: 2;
+}
+.timeline-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-lg);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: color var(--duration-fast);
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+.timeline-title:hover {
+  color: var(--color-gold);
+}
+.timeline-excerpt {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-subtle);
+}
+
+/* Widgets */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+.tag-badge {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border: 1px solid var(--color-border-light);
+  padding: 4px 12px;
+  border-radius: 20px;
+  transition: all var(--duration-fast);
+}
+.tag-badge:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+.most-read-list, .archive-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.most-read-list li a, .archive-list li a {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--duration-fast);
+}
+.most-read-list li a:hover, .archive-list li a:hover {
+  color: var(--color-gold);
+}
+
+.soul-item {
+  margin-bottom: var(--space-md);
+}
+.soul-label {
+  display: block;
+  font-family: var(--font-ui);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.soul-value {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.random-quote {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+.random-quote cite {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: var(--font-size-xs);
+  font-style: normal;
+  color: var(--color-text-muted);
+  margin-top: var(--space-sm);
+  text-align: right;
+}
+
+/* Tâm sự Hover Thumbnail */
+.tamsu-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+.tamsu-item {
+  position: relative;
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border-light);
+}
+.tamsu-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
+  color: var(--color-text);
+  text-decoration: none;
+  display: inline-block;
+  transition: color var(--duration-fast);
+}
+.tamsu-title:hover {
+  color: var(--color-gold);
+}
+.tamsu-thumb {
+  position: absolute;
+  top: 50%;
+  right: 20%;
+  transform: translateY(-50%) translateX(20px);
+  width: 240px;
+  height: 160px;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--duration) var(--ease-out);
+  border-radius: 4px;
+  z-index: 10;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.tamsu-title:hover + .tamsu-thumb {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
