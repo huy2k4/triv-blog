@@ -332,10 +332,11 @@
     (function() {
       if (typeof Lenis !== 'undefined') {
         const lenis = new Lenis({
-          duration: 1.4, // Thời gian trượt (tạo cảm giác quán tính mượt)
-          easing: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2, // easeInOutCubic: chậm khúc đầu, nhanh khúc giữa, chậm khúc cuối
+          duration: 0.8, // Giảm thời gian xuống để không bị "chì"
+          // Easing pha trộn: 95% là trượt mượt tự nhiên (easeOutQuart), 5% là gia tốc nhẹ lúc đầu
+          easing: (t) => 0.05 * (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2) + 0.95 * (1 - Math.pow(1 - t, 4)),
           smoothWheel: true,
-          wheelMultiplier: 1.2, // Tăng tốc độ cuộn tối đa lên một chút
+          wheelMultiplier: 1.0, // Trả về tốc độ chuẩn
         });
 
         function raf(time) {
