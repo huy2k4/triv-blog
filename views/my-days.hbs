@@ -39,26 +39,40 @@
     </div>
   </div>
 
-  <!-- Thời tiết tâm hồn (2x2) -->
-  <div class="bento-cell cell-2x2">
-    <h3 class="widget-title">Thời tiết tâm hồn</h3>
-    <div class="widget-content">
-      <div class="soul-item">
-        <span class="soul-label">📖 Đang đọc</span>
-        <span class="soul-value">Norwegian Wood</span>
-      </div>
-      <div class="soul-item">
-        <span class="soul-label">🎵 Đang nghe</span>
-        <span class="soul-value">Và thế là hết - Chillies</span>
-      </div>
-      <div class="soul-item">
-        <span class="soul-label">💭 Tâm trạng</span>
-        <span class="soul-value">Một chút mưa bay...</span>
-      </div>
+  <!-- Reading (2x2) -->
+  <div class="bento-cell cell-2x2 cell-soul reveal">
+    <div class="soul-icon" aria-label="Đang đọc">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+      </svg>
     </div>
+    <div class="soul-text">Norwegian Wood</div>
   </div>
 
-  <!-- Ảnh minh hoạ (2x2) thay vì Archive để bù đắp khoảng trống -->
+  <!-- Listening (2x2) -->
+  <div class="bento-cell cell-2x2 cell-soul reveal">
+    <div class="soul-icon" aria-label="Đang nghe">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="5.5" cy="17.5" r="2.5"></circle>
+        <circle cx="17.5" cy="15.5" r="2.5"></circle>
+        <path d="M8 17V5l12-2v12"></path>
+        <path d="M8 9l12-2"></path>
+      </svg>
+    </div>
+    <div class="soul-text">Và thế là hết - Chillies</div>
+  </div>
+
+  <!-- Mood (2x2) -->
+  <div class="bento-cell cell-2x2 cell-soul reveal">
+    <div class="soul-icon" aria-label="Tâm trạng">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+      </svg>
+    </div>
+    <div class="soul-text">Một chút mưa bay...</div>
+  </div>
+
+  <!-- Ảnh minh hoạ (2x2) -->
   <div class="bento-cell cell-2x2 cell-image reveal">
     <img src="https://images.unsplash.com/photo-1525081905268-fc0b46e9d786?q=80&w=1470&auto=format&fit=crop" alt="My Days Aesthetic" loading="lazy" />
   </div>

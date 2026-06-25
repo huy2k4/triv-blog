@@ -2119,24 +2119,34 @@ html[data-theme='dark'] .bento-cell:hover {
   color: var(--color-gold);
 }
 
-/* Thời tiết tâm hồn */
-.soul-item {
-  margin-bottom: var(--space-md);
+/* Thời tiết tâm hồn (Bento Cells) */
+.cell-soul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-md);
+  padding: var(--space-xl);
 }
-.soul-label {
-  display: block;
-  font-family: var(--font-ui);
-  color: var(--color-text-subtle);
-  font-size: var(--font-size-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 4px;
+.soul-icon {
+  color: var(--color-gold);
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-xs);
 }
-.soul-value {
-  font-family: var(--font-display);
-  font-size: var(--font-size-md);
+.soul-icon svg {
+  width: 36px;
+  height: 36px;
+}
+.soul-text {
+  font-family: var(--font-accent);
+  font-size: 2.2rem;
+  line-height: 1.2;
   color: var(--color-text);
-  font-style: italic;
+  margin: 0;
 }
 
 /* Bài viết Bento */
