@@ -12,7 +12,7 @@ export class HomeController {
   index() {
     const { featuredPost, recentPosts } = this.homeService.getHomeData();
     return {
-      title: 'Triv. — My Days · Góc nhìn · Kiến thức · Tâm sự',
+      title: 'Trivelet Aisling',
       description:
         'Blog cá nhân của Trivelet Aisling (Triv) — những ngày tháng, góc nhìn và điều đúc kết.',
       isHome: true,
