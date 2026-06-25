@@ -1845,6 +1845,12 @@ body::after {
   pointer-events: none;
 }
 
+.floating-actions:has(.lang-panel.open) .theme-toggle-btn {
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
 .lang-option {
   background: transparent;
   color: var(--color-text-muted, #6B6B6B);
