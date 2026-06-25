@@ -2182,10 +2182,14 @@ html[data-theme='dark'] .bento-cell:hover {
 .bento-article-thumb {
   margin: calc(-1 * var(--space-xl));
   margin-bottom: var(--space-xl);
-  height: 200px;
+  aspect-ratio: 21/9; /* Tỷ lệ cinematic, hiển thị ảnh rộng hơn thay vì bị bóp dẹt 200px */
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  overflow: hidden;
 }
 .bento-article-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
