@@ -1818,9 +1818,8 @@ body::after {
   top: 50%;
   right: 0;
   transform: translateY(-50%) translateX(100%);
-  padding-right: 48px; /* space for toggle button */
-  z-index: 5;
-  transition: transform var(--duration, 0.4s) var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+  z-index: 15;
+  transition: transform var(--duration, 0.4s) var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1)), opacity var(--duration-fast, 0.2s);
   background: var(--color-bg-elevated, #F5F3F3);
   border: 1px solid var(--color-border, #DBDAD9);
   border-right: none;
@@ -1830,10 +1829,20 @@ body::after {
   padding-top: 8px;
   padding-bottom: 8px;
   box-shadow: -4px 0 12px rgba(0,0,0,0.05);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .lang-panel.open {
   transform: translateY(-50%) translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lang-panel.open + .lang-toggle {
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .lang-option {
